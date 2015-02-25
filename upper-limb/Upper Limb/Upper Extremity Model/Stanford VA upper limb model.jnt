@@ -1,0 +1,2282 @@
+/************************************************************/
+/* Stanford VA upper limb model.jnt					*/
+/* Kate Holzbaur 11/22/04				        	*/
+/*										*/
+/* This model is described in Holzbaur, Murray, and Delp.   */
+/* Annals of Biomed Eng 2005.						*/
+/*										*/
+/* This model has the humerus, radius, and ulna			*/
+/* of the M5 model from Wendy Murray's dissertation.		*/
+/* The hand and wrist bones are from Primal Pictures		*/
+/* and are scaled to match the size of the arm bones.		*/
+/* The bones were also rotated to fit onto the neutral 	*/
+/* orientation of the arm and flipped to be right 		*/
+/* handed rather than left.						*/
+/* The shoulder bones are taken from Wendy Murray's 		*/
+/* dissertation.								*/
+/* The degrees of freedom include:					*/
+/* 	shoulder elevation angle, elevation, and rotation	*/
+/*	elbow flexion							*/
+/*	pronation-supination						*/
+/*	wrist flexion and deviation					*/
+/*	thumb carpal-metacarpal flexion, 				*/
+/*		carpal-metacarpal abduction,				*/
+/*		metacarpal-phalangeal flexion, 			*/
+/*		and interphalangeal flexion				*/
+/*	index finger metacarpal-prox phalangeal abduction,	*/
+/*		metacarpal-prox phalangeal flexion,			*/
+/*		prox-mid phalangeal flexion,				*/
+/*		and mid-dist phalangeal flexion			*/
+/*										*/
+/*										*/ 
+/* The elbow joint rotates about a stationary axis that	*/
+/* passes between the center of the trochlea sulcus and	*/
+/* the center of the capitulum in the humerus. These		*/
+/* points were estimated from the digitized surface of 	*/
+/* the distal humerus. The forearm rotates about an axis	*/
+/* that passes through the center of the radial head and	*/
+/* the distal ulna. These points were also calculated		*/
+/* based on digitized bone surfaces.				*/
+/* The wrist axes are based on data in Ruby 1998. 		*/
+/* The thumb kinematics are based on Hollister 1992/1995.	*/							
+/* The finger kinematics are approximated using the 		*/
+/* anatomical axes.							*/
+/* The shoulder axes and descriptions are taken from 		*/
+/* de Groot and Brand 2001.						*/
+/*										*/
+/************************************************************/
+
+name Stanford VA Upper Limb Model
+
+marker_visibility on
+MV_gear 2.000000
+solver_accuracy 0.000100
+background_color 0.0 0.0 0.0
+
+/*********************************************/
+/*               SEGMENTS                    */
+/*********************************************/
+
+beginsegment ground
+endsegment
+
+beginsegment thorax
+bone thorax.asc
+endsegment
+
+beginsegment scapula
+bone scapula.asc
+endsegment
+
+beginsegment clavphant
+endsegment
+
+beginsegment scapphant
+endsegment
+
+beginsegment clavicle
+bone clavicle.asc
+endsegment
+
+beginsegment humphant
+endsegment
+
+beginsegment humphant1
+endsegment
+
+beginsegment humerus
+bone humerus.asc
+endsegment
+
+beginsegment ulna
+bone ulna.asc
+endsegment
+
+beginsegment radius
+bone radius.asc
+endsegment
+
+beginsegment lunate
+bone lunate.asc
+endsegment
+
+beginsegment scaphoid
+bone scaphoid.asc
+endsegment
+
+beginsegment pisiform
+bone pisiform.asc
+endsegment
+
+beginsegment triquetrum
+bone triquetrum.asc
+endsegment
+
+beginsegment capitate
+bone capitate.asc
+endsegment
+
+beginsegment trapezium
+bone trapezium.asc
+endsegment
+
+beginsegment trapezoid
+bone trapezoid.asc
+endsegment
+
+beginsegment hamate
+bone hamate.asc
+endsegment
+
+beginsegment firstmc1
+endsegment
+
+beginsegment firstmc
+bone 1mc.asc
+endsegment
+
+beginsegment secondmc
+bone 2mc.asc
+endsegment
+
+beginsegment thirdmc
+bone 3mc.asc
+endsegment
+
+beginsegment fourthmc
+bone 4mc.asc
+endsegment
+
+beginsegment fifthmc
+bone 5mc.asc
+endsegment
+
+beginsegment proximal_thumb
+bone thumbprox.asc
+endsegment
+
+beginsegment distal_thumb
+bone thumbdist.asc
+endsegment
+
+beginsegment 2proxph
+bone 2proxph.asc
+endsegment
+
+beginsegment 2midph
+bone 2midph.asc
+endsegment
+
+beginsegment 2distph
+bone 2distph.asc
+endsegment
+
+beginsegment 3proxph
+bone 3proxph.asc
+endsegment
+
+beginsegment 3midph
+bone 3midph.asc
+endsegment
+
+beginsegment 3distph
+bone 3distph.asc
+endsegment
+
+beginsegment 4proxph
+bone 4proxph.asc
+endsegment
+
+beginsegment 4midph
+bone 4midph.asc
+endsegment
+
+beginsegment 4distph
+bone 4distph.asc
+endsegment
+
+beginsegment 5proxph
+bone 5proxph.asc
+endsegment
+
+beginsegment 5midph
+bone 5midph.asc
+endsegment
+
+beginsegment 5distph
+bone 5distph.asc
+endsegment
+
+/****************************/
+/* Moving muscle via points */
+/****************************/
+
+beginsegment bicpt
+endsegment
+
+beginsegment bicpt2
+endsegment
+
+beginsegment ptpt
+endsegment
+
+beginsegment FCUpt
+endsegment
+
+beginsegment EDCpt
+endsegment
+
+beginsegment APLpt
+endsegment
+
+beginsegment FPLpt
+endsegment
+
+beginsegment FPLpt2
+endsegment
+
+beginsegment PEC1pt3
+endsegment
+
+beginsegment PEC2pt3
+endsegment
+
+beginsegment PEC3pt3
+endsegment
+
+beginsegment PEC1pt2
+endsegment
+
+beginsegment PEC2pt2
+endsegment
+
+beginsegment PEC3pt2
+endsegment
+
+beginsegment DELT2pt2a
+endsegment
+
+beginsegment DELT2pt2
+endsegment
+
+beginsegment LAT1pt2
+endsegment
+
+beginsegment LAT1pt3
+endsegment
+
+beginsegment LAT2pt2
+endsegment
+
+beginsegment LAT2pt3
+endsegment
+
+beginsegment LAT3pt2
+endsegment
+
+beginsegment LAT3pt3
+endsegment
+
+
+
+/*********************************************/
+/*                JOINTS                     */
+/*********************************************/
+
+beginjoint ground_thorax
+segments ground thorax
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.000000
+ty  constant 0.000000
+tz  constant 0.000000
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint sternoclavicular
+segments thorax clavicle
+order t r2 r3 r1
+axis1 -0.103812 0.145416 0.983909
+axis2 0.015300 0.989299 -0.145100
+axis3 -0.994473 0.000000 -0.104997
+tx  constant 0.006325
+ty  constant 0.006930
+tz  constant 0.025465
+r1  constant 0.000000
+r2  function f0(shoulder_elv)
+r3  function f1(shoulder_elv)
+endjoint
+
+beginjoint unrotscap
+segments clavicle clavphant
+order t r3 r2 r1
+axis1 -0.103812 0.145416 0.983909
+axis2 0.015300 0.989299 -0.145100
+axis3 -0.994473 0.000000 -0.104997
+tx  constant -0.014330
+ty  constant 0.020070
+tz  constant 0.135535
+r1  constant 0.000000
+r2  function f2(shoulder_elv)
+r3  function f3(shoulder_elv)
+endjoint
+
+beginjoint acromioclavicular
+segments clavphant scapula
+order t r2 r3 r1
+axis1 0.637700 0.118600 0.761100
+axis2 0.157095 0.947269 -0.279291
+axis3 -0.754084 0.297594 0.585487
+tx  constant 0.000000
+ty  constant 0.000000
+tz  constant 0.000000
+r1  function f4(shoulder_elv)
+r2  function f5(shoulder_elv)
+r3  function f6(shoulder_elv)
+endjoint
+
+beginjoint unrothum
+segments scapula scapphant
+order t r1 r3 r2
+axis1 0.637700 0.118600 0.761100
+axis2 0.157095 0.947269 -0.279291
+axis3 -0.754084 0.297594 0.585487
+tx  constant -0.009550
+ty  constant -0.034000
+tz  constant 0.009000
+r1  function f7(shoulder_elv)
+r2  function f8(shoulder_elv)
+r3  function f9(shoulder_elv)
+endjoint
+
+beginjoint shoulder0
+segments scapphant humphant
+order t r1 r2 r3
+axis1 0.058798 -0.042598 0.997361
+axis2 0.004800 0.999089 0.042400
+axis3 -0.998261 0.002300 0.058898
+tx  constant 0.000000
+ty  constant 0.000000
+tz  constant 0.000000
+r1  constant 0.000000
+r2  function f10(elv_angle)
+r3  constant 0.000000
+endjoint
+
+beginjoint shoulder1
+segments humphant humphant1
+order t r1 r3 r2
+axis1 0.058798 -0.042598 0.997361
+axis2 0.004800 0.999089 0.042400
+axis3 -0.998261 0.002300 0.058898
+tx  constant 0.000000
+ty  constant 0.000000
+tz  constant 0.000000
+r1  constant 0.000000
+r2  function f11(elv_angle)
+r3  function f12(shoulder_elv)
+endjoint
+
+beginjoint shoulder2
+segments humphant1 humerus
+order t r1 r2 r3
+axis1 0.058798 -0.042598 0.997361
+axis2 0.004800 0.999089 0.042400
+axis3 -0.998261 0.002300 0.058898
+tx  constant 0.000000
+ty  constant 0.000000
+tz  constant 0.000000
+r1  constant 0.000000
+r2  function f13(shoulder_rot)
+r3  constant 0.000000
+endjoint
+
+beginjoint elbow
+segments humerus ulna
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.049400 0.036600 0.998108
+tx  constant 0.006100
+ty  constant -0.290400
+tz  constant -0.012300
+r1  constant 0.000000
+r2  constant 0.000000
+r3  function f14(elbow_flexion)
+endjoint
+
+beginjoint radioulnar
+segments ulna radius
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 -0.017161 0.992666 -0.119668
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.000400
+ty  constant -0.011503
+tz  constant 0.019999
+r1  constant 0.000000
+r2  function f15(pro_sup)
+r3  constant 0.000000
+endjoint
+
+beginjoint radiocarpal
+segments radius lunate
+order t r1 r2 r3
+axis1 -0.819064 -0.135611 -0.557444
+axis2 0.000000 1.000000 0.000000
+axis3 0.956427 -0.252207 0.147104
+tx  constant 0.018000
+ty  constant -0.242000
+tz  constant 0.025000
+r1  function f16(deviation)
+r2  constant 0.000000
+r3  function f17(flexion)
+endjoint
+
+beginjoint lun_scaph
+segments lunate scaphoid
+order t r3 r2 r1
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.012345
+ty  constant -0.004464
+tz  constant -0.001254
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint lun_pis
+segments lunate pisiform
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant -0.013388
+ty  constant -0.009886
+tz  constant -0.010593
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint lun_triq
+segments lunate triquetrum
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant -0.010784
+ty  constant -0.007499
+tz  constant -0.001289
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint proximal_distal
+segments lunate capitate
+order t r1 r2 r3
+axis1 0.899136 -0.349053 -0.264040
+axis2 0.000000 1.000000 0.000000
+axis3 0.997119 0.010700 -0.075101
+tx  constant 0.003992
+ty  constant -0.015054
+tz  constant 0.002327
+r1  function f18(deviation)
+r2  constant 0.000000
+r3  function f19(flexion)
+endjoint
+
+beginjoint cap_trpzm
+segments capitate trapezium
+order t r3 r2 r1
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.015293
+ty  constant -0.004569
+tz  constant -0.010308
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint cap_trpzd
+segments capitate trapezoid
+order t r3 r2 r1
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.009143
+ty  constant -0.004062
+tz  constant -0.002464
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint cap_ham
+segments capitate hamate
+order t r3 r2 r1
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant -0.010969
+ty  constant -0.002495
+tz  constant -0.000750
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint CMC1a
+segments trapezium firstmc1
+order t r1 r2 r3
+axis1 0.525173 0.717763 0.457176
+axis2 0.210304 0.723315 0.657714
+axis3 -0.042399 -0.665286 0.745384
+tx  constant 0.000000
+ty  constant 0.000000
+tz  constant 0.000000
+r1  constant 0.000000
+r2  constant 0.000000
+r3  function f20(cmc_flexion)
+endjoint
+
+beginjoint CMC1b
+segments firstmc1 firstmc
+order t r1 r2 r3
+axis1 0.495557 0.731736 0.467959
+axis2 0.176105 0.729321 0.661119
+axis3 -0.042399 -0.665286 0.745384
+tx  constant 0.007200
+ty  constant -0.005400
+tz  constant -0.002500
+r1  function f21(cmc_abduction)
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint CMC2
+segments capitate secondmc
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.014685
+ty  constant -0.037620
+tz  constant 0.005032
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint CMC3
+segments capitate thirdmc
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant 0.000477
+ty  constant -0.039239
+tz  constant 0.007377
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint CMC4
+segments capitate fourthmc
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant -0.012046
+ty  constant -0.040519
+tz  constant 0.003513
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint CMC5
+segments capitate fifthmc
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  constant -0.021896
+ty  constant -0.034683
+tz  constant -0.004218
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint MCP
+segments firstmc proximal_thumb
+order t r1 r2 r3
+axis1 0.977715 0.171985 0.120390
+axis2 -0.458263 0.804635 0.377569
+axis3 -0.084295 -0.203488 0.975442
+tx  constant 0.016500
+ty  constant -0.029200
+tz  constant -0.012700
+r1  constant 0.000000
+r2  constant 0.000000
+r3  function f22(mp_flexion)
+endjoint
+
+beginjoint IP
+segments proximal_thumb distal_thumb
+order t r1 r2 r3
+axis1 0.997782 0.014398 0.064992
+axis2 -0.458920 0.834335 0.305413
+axis3 -0.050102 -0.479623 0.876043
+tx  constant 0.014000
+ty  constant -0.025900
+tz  constant -0.010100
+r1  constant 0.000000
+r2  constant 0.000000
+r3  function f23(ip_flexion)
+endjoint
+
+beginjoint 2MCP
+segments secondmc 2proxph
+order t r1 r2 r3
+axis1 0.997506 -0.039496 0.058494
+axis2 -0.153600 0.983700 -0.093500
+axis3 -0.054999 0.085899 0.994785
+tx  constant 0.003501
+ty  constant -0.028243
+tz  constant 0.003620
+r1  function f24(2mcp_flexion)
+r2  constant 0.000000
+r3  function f24(2mcp_abduction)
+endjoint
+
+beginjoint 2prox-midph
+segments 2proxph 2midph
+order t r1 r2 r3
+axis1 0.960345 0.040998 -0.275784
+axis2 -0.145288 0.985122 -0.091793
+axis3 0.268582 0.128591 0.954635
+tx  constant 0.007517
+ty  constant -0.041273
+tz  constant 0.007326
+r1  function f24(2pm_flexion)
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 2mid-distph
+segments 2midph 2distph
+order t r1 r2 r3
+axis1 0.978977 0.076906 -0.188915
+axis2 -0.143401 0.985407 -0.091701
+axis3 0.179298 0.117199 0.976789
+tx  constant 0.003333
+ty  constant -0.024888
+tz  constant 0.001220
+r1  function f24(2md_flexion)
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 3MCP
+segments thirdmc 3proxph
+order t r1 r2 r3
+axis1 0.970748 -0.167208 0.172308
+axis2 -0.022800 0.995681 -0.089998
+axis3 -0.159892 0.085196 0.983451
+tx  constant 0.000240
+ty  constant -0.026290
+tz  constant 0.001778
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 3prox-midph
+segments 3proxph 3midph
+order t r1 r2 r3
+axis1 0.992332 -0.115004 -0.045301
+axis2 -0.015799 0.996264 -0.084897
+axis3 0.055400 0.085500 0.994797
+tx  constant 0.001650
+ty  constant -0.044211
+tz  constant 0.006230
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 3mid-distph
+segments 3midph 3distph
+order t r1 r2 r3
+axis1 0.989822 0.093493 0.107292
+axis2 -0.070104 0.994350 -0.079704
+axis3 -0.114187 0.071392 0.990891
+tx  constant 0.001365
+ty  constant -0.029047
+tz  constant 0.001954
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 4MCP
+segments fourthmc 4proxph
+order t r1 r2 r3
+axis1 0.891962 -0.342185 0.295487
+axis2 0.077600 0.996000 -0.044300
+axis3 -0.291121 0.065105 0.954468
+tx  constant -0.001830
+ty  constant -0.023689
+tz  constant -0.000173
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 4prox-midph
+segments 4proxph 4midph
+order t r1 r2 r3
+axis1 0.913701 -0.109700 0.391300
+axis2 0.081299 0.996092 -0.034500
+axis3 -0.386330 0.063505 0.920172
+tx  constant -0.003528
+ty  constant -0.040255
+tz  constant 0.001345
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 4mid-distph
+segments 4midph 4distph
+order t r1 r2 r3
+axis1 0.900778 -0.057999 0.430389
+axis2 0.066099 0.996987 -0.040599
+axis3 -0.426797 0.065200 0.901994
+tx  constant -0.002317
+ty  constant -0.024789
+tz  constant 0.000563
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 5MCP
+segments fifthmc 5proxph
+order t r1 r2 r3
+axis1 0.828072 -0.254191 0.499683
+axis2 0.129095 0.990660 0.043898
+axis3 -0.510048 0.028303 0.859680
+tx  constant -0.001597
+ty  constant -0.021431
+tz  constant -0.001496
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 5prox-midph
+segments 5proxph 5midph
+order t r1 r2 r3
+axis1 0.657113 -0.381007 0.650412
+axis2 0.136803 0.989420 0.048301
+axis3 -0.684815 0.059101 0.726316
+tx  constant -0.005279
+ty  constant -0.035563
+tz  constant -0.002879
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint 5mid-distph
+segments 5midph 5distph
+order t r1 r2 r3
+axis1 0.643112 -0.226804 0.731414
+axis2 0.142898 0.987787 0.062099
+axis3 -0.739321 0.064902 0.670219
+tx  constant -0.002871
+ty  constant -0.020677
+tz  constant -0.002243
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+
+/****************************/
+/* Moving muscle via points */
+/****************************/
+
+beginjoint bicpt
+segments radius bicpt
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f70(elbow_flexion)
+ty  function f71(elbow_flexion)
+tz  function f72(elbow_flexion)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint bicpt2
+segments radius bicpt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f80(pro_sup)
+ty  function f81(elbow_flexion)
+tz  function f82(pro_sup)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint ptpt
+segments ulna ptpt
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f90(pro_sup)
+ty  function f91(pro_sup)
+tz  function f92(pro_sup)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint FCUpt
+segments radius FCUpt
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f100(pro_sup)
+ty  function f101(pro_sup)
+tz  function f102(pro_sup)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint EDCpt
+segments radius EDCpt
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f110(pro_sup)
+ty  function f111(pro_sup)
+tz  function f112(pro_sup)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint APLpt
+segments capitate APLpt
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f120(flexion)
+ty  function f121(flexion)
+tz  function f122(flexion)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint FPLpt
+segments capitate FPLpt
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f130(flexion)
+ty  function f131(flexion)
+tz  function f132(flexion)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint FPLpt2
+segments capitate FPLpt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f140(cmc_flexion)
+ty  function f141(cmc_flexion)
+tz  function f142(cmc_flexion)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint PEC1pt2
+segments humerus PEC1pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f150(shoulder_elv)
+ty  function f151(shoulder_elv)
+tz  function f152(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint PEC1pt3
+segments thorax PEC1pt3
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f160(shoulder_elv)
+ty  function f161(shoulder_elv)
+tz  function f162(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint PEC2pt2
+segments humerus PEC2pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f170(shoulder_elv)
+ty  function f171(shoulder_elv)
+tz  function f172(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint PEC2pt3
+segments thorax PEC2pt3
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f180(shoulder_elv)
+ty  function f181(shoulder_elv)
+tz  function f182(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint PEC3pt2
+segments humerus PEC3pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f190(shoulder_elv)
+ty  function f191(shoulder_elv)
+tz  function f192(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint PEC3pt3
+segments thorax PEC3pt3
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f200(shoulder_elv)
+ty  function f201(shoulder_elv)
+tz  function f202(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint DELT2pt2a
+segments humerus DELT2pt2a
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f210(shoulder_elv)
+ty  function f211(shoulder_elv)
+tz  function f212(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint DELT2pt2
+segments DELT2pt2a DELT2pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f220(shoulder_rot)
+ty  function f221(shoulder_rot)
+tz  function f222(shoulder_rot)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint LAT1pt2
+segments scapula LAT1pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f230(shoulder_elv)
+ty  function f231(shoulder_elv)
+tz  function f232(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint LAT1pt3
+segments scapula LAT1pt3
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f240(shoulder_elv)
+ty  function f241(shoulder_elv)
+tz  function f242(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint LAT2pt2
+segments scapula LAT2pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f250(shoulder_elv)
+ty  function f251(shoulder_elv)
+tz  function f252(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint LAT2pt3
+segments scapula LAT2pt3
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f260(shoulder_elv)
+ty  function f261(shoulder_elv)
+tz  function f262(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint LAT3pt2
+segments scapula LAT3pt2
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f270(shoulder_elv)
+ty  function f271(shoulder_elv)
+tz  function f272(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+beginjoint LAT3pt3
+segments scapula LAT3pt3
+order t r1 r2 r3
+axis1 1.000000 0.000000 0.000000
+axis2 0.000000 1.000000 0.000000
+axis3 0.000000 0.000000 1.000000
+tx  function f280(shoulder_elv)
+ty  function f281(shoulder_elv)
+tz  function f282(shoulder_elv)
+r1  constant 0.000000
+r2  constant 0.000000
+r3  constant 0.000000
+endjoint
+
+
+
+/*********************************************/
+/*              GENCOORDS                    */
+/*********************************************/
+
+begingencoord shoulder_elv
+range 0.000000 180.000000
+keys s_key middlemouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord elv_angle
+range -90.000000 130.000000
+keys s_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord shoulder_rot
+range -90.000000 20.000000
+keys s_key rightmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord elbow_flexion
+range 0.000000 130.000000
+keys e_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord pro_sup
+range -90.000000 90.000000
+keys p_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord deviation
+range -10.000000 25.000000
+keys v_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord flexion
+range -70.000000 70.000000
+keys f_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord cmc_flexion
+range -15.000000 45.000000
+keys c_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord cmc_abduction
+range -25.000000 25.000000
+keys a_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord mp_flexion
+range -45.000000 40.000000
+keys m_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord ip_flexion
+range -75.000000 25.000000
+keys i_key leftmouse_button
+default_value 0.000000
+endgencoord
+
+begingencoord 2mcp_flexion
+range -50.000000 90.000000
+default_value 0.000000
+endgencoord
+
+begingencoord 2mcp_abduction
+range -15.000000 15.000000
+default_value 0.000000
+endgencoord
+
+begingencoord 2pm_flexion
+range 0.000000 120.000000
+default_value 0.000000
+endgencoord
+
+begingencoord 2md_flexion
+range 0.000000 90.000000
+default_value 0.000000
+endgencoord
+
+
+
+/*********************************************/
+/*               FUNCTIONS                   */
+/*********************************************/
+
+/* shoulder joints */
+beginfunction f0
+(   0.000000,   0.000000)
+( 150.000000, -36.300000)
+endfunction
+
+beginfunction f1
+(   0.000000,   0.000000)
+( 180.000000,  18.450000)
+endfunction
+
+beginfunction f2
+(   0.000000,   0.000000)
+( 150.000000,  36.300000)
+endfunction
+
+beginfunction f3
+(   0.000000,   0.000000)
+( 180.000000, -18.450000)
+endfunction
+
+beginfunction f4
+(   0.000000,   0.000000)
+( 150.000000,  26.700000)
+endfunction
+
+beginfunction f5
+(   0.000000,   0.000000)
+( 150.000000,  -7.350000)
+endfunction
+
+beginfunction f6
+(   0.000000,   0.000000)
+( 150.000000,  59.400000)
+endfunction
+
+beginfunction f7
+(   0.000000,   0.000000)
+( 150.000000, -26.700000)
+endfunction
+
+beginfunction f8
+(   0.000000,   0.000000)
+( 150.000000,   7.350000)
+endfunction
+
+beginfunction f9
+(   0.000000,   0.000000)
+( 150.000000, -59.400000)
+endfunction
+
+beginfunction f10
+( -90.000000, -90.000000)
+( 180.000000, 180.000000)
+endfunction
+
+beginfunction f11
+( -90.000000,  90.000000)
+( 180.000000,-180.000000)
+endfunction
+
+beginfunction f12
+(   0.000000,   0.000000)
+( 180.000000, 180.000000)
+endfunction
+
+beginfunction f13
+(   0.000000,   0.000000)
+( 180.000000, 180.000000)
+endfunction
+
+/* elbow */
+beginfunction f14
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+/* pronation-supination*/
+beginfunction f15
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+/* wrist */
+beginfunction f16
+( -10.000000, -10.000000)
+(   0.000000,   0.000000)
+(  25.000000,  25.000000)
+endfunction
+
+beginfunction f17
+( -90.000000, -45.000000)
+(  90.000000,  45.000000)
+endfunction
+
+beginfunction f18
+( -10.000000, -15.000000)
+(   0.000000,   0.000000)
+(  25.000000,  25.000000)
+endfunction
+
+beginfunction f19
+( -70.000000, -35.000000)
+(  70.000000,  35.000000)
+endfunction
+
+/* thumb */
+beginfunction f20
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+beginfunction f21
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+beginfunction f22
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+beginfunction f23
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+/* index finger */
+beginfunction f24
+(-360.000000,-360.000000)
+( 360.000000, 360.000000)
+endfunction
+
+/****************/
+/* muscle points*/
+/****************/
+
+/* bicpt */
+beginfunction f70
+(   0.000000,  -0.000100)
+( 130.000000,   0.004200)
+endfunction
+
+beginfunction f71
+(   0.000000,  -0.027600)
+( 130.000000,  -0.042500)
+endfunction
+
+beginfunction f72
+(   0.000000,  -0.004300)
+( 130.000000,  -0.006700)
+endfunction
+
+/* bicpt2 */
+beginfunction f80
+( -90.000000,  -0.003000)
+( -35.000000,   0.010000)
+(  90.425782,   0.013760)
+endfunction
+
+beginfunction f81
+(   0.000000,  -0.010200)
+( 130.338396,  -0.045607)
+endfunction
+
+beginfunction f82
+( -90.000000,  -0.009500)
+( -35.000000,  -0.011533)
+(  90.276050,  -0.000331)
+endfunction
+
+/* ptpt */
+beginfunction f90
+( -90.000000,   0.014200)
+(  90.000000,   0.000900)
+endfunction
+
+beginfunction f91
+( -90.000000,  -0.060600)
+(  90.000000,  -0.069200)
+endfunction
+
+beginfunction f92
+( -90.000000,   0.007200)
+(  90.000000,  -0.007300)
+endfunction
+
+/* FCUpt */
+beginfunction f100
+( -90.000000,  -0.002700)
+(   0.000000,   0.004000)
+(  90.000000,   0.013200)
+endfunction
+
+beginfunction f101
+( -90.000000,  -0.183800)
+(   0.000000,  -0.184100)
+(  90.000000,  -0.182100)
+endfunction
+
+beginfunction f102
+( -90.000000,   0.006900)
+(   0.000000,   0.000500)
+(  90.000000,   0.000200)
+endfunction
+
+/* EDCpt */
+beginfunction f110
+( -90.000000,   0.010800)
+(   0.000000,   0.000000)
+(  90.000000,  -0.010800)
+endfunction
+
+beginfunction f111
+( -90.000000,  -0.001300)
+(   0.000000,   0.000000)
+(  90.000000,   0.003800)
+endfunction
+
+beginfunction f112
+( -90.000000,  -0.003500)
+(   0.000000,   0.000000)
+(  90.000000,  -0.000890)
+endfunction
+
+/* APLpt */
+beginfunction f120
+( -70.000000,   0.000000)
+(   0.000000,   0.000000)
+(  70.000000,  -0.002500)
+endfunction
+
+beginfunction f121
+( -70.000000,   0.000000)
+(   0.000000,   0.000000)
+(  70.000000,  -0.001000)
+endfunction
+
+beginfunction f122
+( -70.000000,   0.000000)
+(   0.000000,   0.000000)
+(  70.000000,  -0.005000)
+endfunction
+
+/* FPLpt */
+beginfunction f130
+( -70.000000,   0.000000)
+(   0.000000,   0.000000)
+(  70.000000,  -0.003200)
+endfunction
+
+beginfunction f131
+( -70.000000,   0.000000)
+(   0.000000,   0.000000)
+(  70.000000,  -0.009600)
+endfunction
+
+beginfunction f132
+( -70.000000,   0.000000)
+(   0.000000,   0.000000)
+(  70.000000,  -0.005400)
+endfunction
+
+/* FPLpt2 */
+beginfunction f140
+( -15.000000,  -0.003200)
+(   0.000000,   0.000000)
+(   5.000000,   0.000040)
+(  10.523810,   0.000032)
+(  21.571429,   0.000008)
+(  44.994558,   0.000000)
+endfunction
+
+beginfunction f141
+( -15.000000,   0.000500)
+(   0.000000,   0.000000)
+(  45.000000,   0.000000)
+endfunction
+
+beginfunction f142
+( -15.000000,   0.000600)
+(   0.000000,   0.000000)
+(  45.000000,   0.000000)
+endfunction
+
+/* PEC1pt2 */
+beginfunction f150
+(   0.000000,   0.000000)
+( 180.000000,   0.005900)
+endfunction
+
+beginfunction f151
+(   0.000000,   0.000000)
+( 180.000000,   0.020700)
+endfunction
+
+beginfunction f152
+(   0.000000,   0.000000)
+( 180.000000,   0.014400)
+endfunction
+
+/* PEC1pt3 */
+beginfunction f160
+(   0.000000,   0.000000)
+( 180.000000,  -0.019300)
+endfunction
+
+beginfunction f161
+(   0.000000,   0.000000)
+( 180.000000,   0.046600)
+endfunction
+
+beginfunction f162
+(   0.000000,   0.000000)
+( 180.000000,  -0.044200)
+endfunction
+
+/* PEC2pt2 */
+beginfunction f170
+(   0.000000,   0.000000)
+( 180.000000,   0.005900)
+endfunction
+
+beginfunction f171
+(   0.000000,   0.000000)
+( 180.000000,   0.020700)
+endfunction
+
+beginfunction f172
+(   0.000000,   0.000000)
+( 180.000000,   0.014400)
+endfunction
+
+/* PEC2pt3*/
+beginfunction f180
+(   0.000000,   0.000000)
+( 180.000000,   0.001300)
+endfunction
+
+beginfunction f181
+(   0.000000,   0.000000)
+( 180.000000,   0.043200)
+endfunction
+
+beginfunction f182
+(   0.000000,   0.000000)
+( 180.000000,  -0.022700)
+endfunction
+
+/* PEC3pt2 */
+beginfunction f190
+(   0.000000,   0.000000)
+(  42.829582,   0.002482)
+( 180.000000,   0.005900)
+endfunction
+
+beginfunction f191
+(   0.000000,   0.000000)
+( 179.421222,   0.011474)
+endfunction
+
+beginfunction f192
+(   0.000000,   0.000000)
+(  35.698464,   0.009968)
+( 131.278223,   0.018193)
+( 179.068103,   0.017746)
+endfunction
+
+/* PEC3pt3 */
+beginfunction f200
+(   0.000000,   0.000000)
+( 180.000000,   0.000000)
+endfunction
+
+beginfunction f201
+(   0.578778,   0.000222)
+(  91.446945,   0.011219)
+( 180.000000,   0.044100)
+endfunction
+
+beginfunction f202
+(   0.000000,   0.000000)
+( 180.000000,   0.000000)
+endfunction
+
+/* DELT2pt2a */
+beginfunction f210
+(   0.000000,   0.000000)
+( 180.000000,  -0.016900)
+endfunction
+
+beginfunction f211
+(   0.000000,   0.000000)
+( 180.000000,  -0.078100)
+endfunction
+
+beginfunction f212
+(   0.000000,   0.000000)
+(  70.032154,  -0.005395)
+( 180.000000,  -0.036300)
+endfunction
+
+/* DELT2pt2 */
+beginfunction f220
+( -90.000000,   0.021400)
+(  -0.581569,   0.000049)
+(  19.998863,  -0.020005)
+endfunction
+
+beginfunction f221
+( -90.000000,  -0.002900)
+( -67.717042,  -0.002148)
+(  -9.710611,  -0.000139)
+(   0.000000,   0.000000)
+(  20.000000,  -0.001644)
+endfunction
+
+beginfunction f222
+( -90.000000,  -0.045500)
+( -28.456592,  -0.006762)
+(   0.000000,   0.000000)
+(  19.646302,  -0.005730)
+endfunction
+
+/* LAT1pt2 */
+beginfunction f230
+(   0.000000,   0.000000)
+( 180.000000,  -0.002100)
+endfunction
+
+beginfunction f231
+(   0.000000,   0.000000)
+( 180.000000,   0.035200)
+endfunction
+
+beginfunction f232
+(   0.000000,   0.000000)
+( 180.000000,  -0.014400)
+endfunction
+
+/* LAT1pt3 */
+beginfunction f240
+(   0.000000,   0.000000)
+( 180.000000,   0.005800)
+endfunction
+
+beginfunction f241
+(   0.000000,   0.000000)
+( 180.000000,   0.050800)
+endfunction
+
+beginfunction f242
+(   0.000000,   0.000000)
+( 180.000000,  -0.042000)
+endfunction
+
+/* LAT2pt2 */
+beginfunction f250
+(   0.000000,   0.000000)
+( 180.000000,  -0.014100)
+endfunction
+
+beginfunction f251
+(   0.000000,   0.000000)
+( 180.000000,   0.030500)
+endfunction
+
+beginfunction f252
+(   0.000000,   0.000000)
+( 180.000000,  -0.012900)
+endfunction
+
+/* LAT2pt3 */
+beginfunction f260
+(   0.000000,   0.000000)
+( 180.000000,  -0.029400)
+endfunction
+
+beginfunction f261
+(   0.000000,   0.000000)
+( 180.000000,   0.064400)
+endfunction
+
+beginfunction f262
+(   0.000000,   0.000000)
+( 180.000000,  -0.072100)
+endfunction
+
+/* LAT3pt2 */
+beginfunction f270
+(   0.000000,   0.000000)
+( 180.000000,  -0.055200)
+endfunction
+
+beginfunction f271
+(   0.000000,   0.000000)
+( 180.000000,   0.034100)
+endfunction
+
+beginfunction f272
+(   0.000000,   0.000000)
+( 180.000000,  -0.017300)
+endfunction
+
+/* LAT3pt3 */
+beginfunction f280
+(   0.000000,   0.000000)
+( 180.000000,  -0.036600)
+endfunction
+
+beginfunction f281
+(   0.000000,   0.000000)
+( 180.000000,   0.074400)
+endfunction
+
+beginfunction f282
+(   0.000000,   0.000000)
+( 180.000000,  -0.090100)
+endfunction
+
+
+
+/*********************************************/
+/*           MUSCLE WRAP OBJECTS             */
+/*********************************************/
+
+
+/* Shoulder wrap surfaces */
+
+beginwrapobject Thorax
+wraptype ellipsoid
+segment thorax
+visible no
+xyz_body_rotation 2.49 -19.02 10.88
+translation -0.0386 -0.1273 0.0709
+radius 0.1000 0.1350 0.0800
+endwrapobject
+
+beginwrapobject DELT1hh
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation 3.35 57.56 32.68
+translation -0.0139 -0.0127 -0.0262
+radius 0.0300 0.1000 0.0500
+quadrant z
+endwrapobject
+
+beginwrapobject Deltoid2
+wraptype ellipsoid
+segment scapula
+active no
+visible no
+xyz_body_rotation 179.36 -88.74 -75.30
+translation -0.0058 -0.0378 0.0096
+radius 0.0300 0.0400 0.0350
+quadrant -y
+endwrapobject
+
+beginwrapobject delt2hum
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation 96.31 -1.43 2.96
+translation 0.0017 -0.0958 0.0011
+radius 0.0094
+height 0.0500
+endwrapobject
+
+beginwrapobject Delt3
+wraptype torus
+segment scapula
+active no
+visible no
+xyz_body_rotation 35.58 18.84 -32.13
+translation -0.0973 -0.0428 -0.0370
+radius 0.0400 0.0600
+endwrapobject
+
+beginwrapobject delt3hum
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation 98.97 4.35 -157.17
+translation 0.0019 -0.0592 0.0011
+radius 0.0100 0.0100 0.0500
+quadrant x
+endwrapobject
+
+beginwrapobject SUPSP
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation 2.18 0.49 -74.87
+translation 0.0002 0.0077 0.0043
+radius 0.0200 0.0200 0.0200
+endwrapobject
+
+beginwrapobject INFSP
+wraptype torus
+segment scapula
+visible no
+xyz_body_rotation 1.45 33.71 8.70
+translation -0.0561 -0.0199 -0.0112
+radius 0.0080 0.0190
+endwrapobject
+
+beginwrapobject INFSP_and_TMIN_hum_head
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation -16.42 -0.52 -3.92
+translation -0.0003 0.0026 0.0038
+radius 0.0200 0.0250 0.0200
+endwrapobject
+
+beginwrapobject SUBSCAP
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation -52.97 16.55 21.86
+translation -0.0025 0.0007 -0.0045
+radius 0.0200 0.0170 0.0280
+endwrapobject
+
+beginwrapobject TMIN
+wraptype ellipsoid
+segment scapula
+visible no
+xyz_body_rotation -120.18 -16.09 -101.04
+translation -0.0418 -0.0519 -0.0359
+radius 0.0300 0.0300 0.0500
+quadrant x
+endwrapobject
+
+beginwrapobject TMINhum
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation 100.47 3.97 157.35
+translation -0.0014 -0.0455 0.0000
+radius 0.0070
+height 0.0700
+quadrant x
+endwrapobject
+
+beginwrapobject TMAJ_LAT_PEC_CORBhh
+wraptype sphere
+segment humerus
+visible no
+translation 0.0007 0.0000 0.0060
+radius 0.0300
+endwrapobject
+
+beginwrapobject TMAJ_LAThum
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation 88.03 -3.65 81.03
+translation 0.0007 -0.0443 -0.0055
+radius 0.0070
+height 0.0400
+quadrant -x
+endwrapobject
+
+beginwrapobject PEC1hh
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation -35.55 -17.79 20.84
+translation -0.0037 0.0005 -0.0025
+radius 0.0300 0.0200 0.0200
+quadrant -z
+endwrapobject
+
+beginwrapobject PEC12hum
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation 89.34 -4.44 -53.05
+translation 0.0020 -0.0508 -0.0017
+radius 0.0090
+height 0.0700
+quadrant x
+endwrapobject
+
+beginwrapobject PEC23hh
+wraptype sphere
+segment humerus
+visible no
+translation -0.0086 0.0021 -0.0004
+radius 0.0200
+endwrapobject
+
+beginwrapobject PEC3hum
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation 82.56 -3.22 100.38
+translation 0.0009 -0.0551 -0.0004
+radius 0.0080
+height 0.0700
+quadrant -x
+endwrapobject
+
+beginwrapobject LAT_TMAJhh
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation -17.48 -1.05 -39.34
+translation -0.0224 0.0102 0.0094
+radius 0.0070
+height 0.0450
+quadrant -y
+endwrapobject
+
+beginwrapobject LAT_TMAJ2hh
+wraptype sphere
+segment humerus
+visible no
+xyz_body_rotation -7.29 15.82 1.13
+translation -0.0016 0.0092 0.0052
+radius 0.0300
+quadrant -z
+endwrapobject
+
+beginwrapobject CORBhum
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation -92.15 5.50 50.15
+translation 0.0027 -0.1202 -0.0059
+radius 0.0080
+height 0.0500
+quadrant x
+endwrapobject
+
+
+/* Elbow wrap surfaces */
+
+beginwrapobject TRIlonghh
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation 171.98 -48.90 147.49
+translation -0.0078 -0.0041 -0.0014
+radius 0.0350 0.0200 0.0200
+quadrant z
+endwrapobject
+
+beginwrapobject TRIlongglen
+wraptype cylinder
+segment scapula
+visible no
+xyz_body_rotation 78.80 -16.88 139.57
+translation -0.0359 -0.0309 -0.0132
+radius 0.0030
+height 0.0300
+quadrant x
+endwrapobject
+
+beginwrapobject TRI
+wraptype cylinder
+segment humerus
+visible no
+xyz_body_rotation -8.03 -0.36 8.88
+translation 0.0028 -0.2919 -0.0119
+radius 0.0160
+height 0.0400
+endwrapobject
+
+beginwrapobject ANC
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation 0.43 -11.27 60.12
+translation 0.0134 -0.2861 -0.0008
+radius 0.0200 0.0200 0.0200
+quadrant -x
+endwrapobject
+
+beginwrapobject SUP
+wraptype cylinder
+segment radius
+visible no
+xyz_body_rotation 82.95 17.42 -139.86
+translation 0.0045 -0.0437 0.0059
+radius 0.0080
+height 0.0400
+quadrant -x
+endwrapobject
+
+beginwrapobject BIClong
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation -114.84 -57.39 55.89
+translation 0.0033 0.0073 0.0003
+radius 0.0250 0.0200 0.0200
+quadrant -y
+endwrapobject
+
+beginwrapobject Elbow_BIC_BRD
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation -7.37 7.88 1.76
+translation 0.0019 -0.2890 -0.0140
+radius 0.0150 0.0150 0.1000
+quadrant x
+endwrapobject
+
+beginwrapobject Elbow_PT_ECRL
+wraptype ellipsoid
+segment humerus
+visible no
+xyz_body_rotation -9.23 -6.35 35.21
+translation 0.0030 -0.2872 -0.0069
+radius 0.0180 0.0250 0.0350
+quadrant x
+endwrapobject
+
+beginwrapobject Extensor_ellipse
+wraptype ellipsoid
+segment lunate
+visible no
+xyz_body_rotation -14.37 16.36 13.34
+translation 0.0007 -0.0135 0.0047
+radius 0.0500 0.0200 0.0130
+quadrant z
+endwrapobject
+
+
+/* Forearm wrap surfaces */
+
+beginwrapobject ECRL
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation 88.14 13.43 41.89
+translation 0.0222 -0.0096 0.0208
+radius 0.0080 0.0160
+endwrapobject
+
+beginwrapobject ECRB
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation 75.21 -6.75 -6.66
+translation 0.0126 -0.0095 0.0186
+radius 0.0080 0.0100
+endwrapobject
+
+beginwrapobject ECU
+wraptype torus
+segment radius
+visible no
+xyz_body_rotation -56.53 -8.53 12.76
+translation -0.0163 -0.2417 0.0349
+radius 0.0060 0.0090
+endwrapobject
+
+beginwrapobject FCR
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation -89.15 -8.78 -5.73
+translation 0.0032 -0.0045 -0.0190
+radius 0.0010 0.0025
+endwrapobject
+
+beginwrapobject FCU
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation -90.17 -4.57 22.48
+translation -0.0123 -0.0124 -0.0171
+radius 0.0068 0.0080
+endwrapobject
+
+beginwrapobject PL
+wraptype ellipsoid
+segment lunate
+visible no
+xyz_body_rotation -1.81 5.71 3.63
+translation 0.0057 -0.0180 -0.0041
+radius 0.0250 0.0140 0.0120
+quadrant -z
+endwrapobject
+
+beginwrapobject PQ1
+wraptype cylinder
+segment radius
+visible no
+xyz_body_rotation -92.11 -0.73 -154.14
+translation 0.0281 -0.1986 0.0288
+radius 0.0100
+height 0.0100
+endwrapobject
+
+beginwrapobject PQ2
+wraptype cylinder
+segment ulna
+visible no
+xyz_body_rotation 79.72 3.95 87.23
+translation -0.0012 -0.2092 0.0428
+radius 0.0070
+height 0.0100
+endwrapobject
+
+
+/* Hand wrap surfaces */
+
+
+beginwrapobject FDS
+wraptype ellipsoid
+segment lunate
+visible no
+xyz_body_rotation 0.48 -4.68 -0.98
+translation 0.0012 -0.0057 -0.0003
+radius 0.0250 0.0130 0.0120
+quadrant -z
+endwrapobject
+
+beginwrapobject FDP
+wraptype ellipsoid
+segment lunate
+visible no
+xyz_body_rotation -84.08 -11.15 6.98
+translation -0.0022 -0.0069 0.0032
+radius 0.0250 0.0130 0.0120
+quadrant y
+endwrapobject
+
+beginwrapobject EDCL
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation 135.40 11.06 -15.42
+translation -0.0128 -0.0133 0.0148
+radius 0.0080 0.0120
+endwrapobject
+
+beginwrapobject EDCR
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation 113.67 5.76 29.97
+translation -0.0098 -0.0137 0.0166
+radius 0.0090 0.0110
+endwrapobject
+
+beginwrapobject EDCM
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation 114.20 11.34 21.10
+translation -0.0007 -0.0117 0.0191
+radius 0.0090 0.0120
+endwrapobject
+
+beginwrapobject EDCI
+wraptype torus
+segment lunate
+visible no
+xyz_body_rotation 97.27 5.14 0.44
+translation 0.0090 -0.0149 0.0211
+radius 0.0090 0.0120
+endwrapobject
+
+beginwrapobject EDM
+wraptype ellipsoid
+segment lunate
+visible no
+xyz_body_rotation 169.75 9.13 6.76
+translation -0.0167 -0.0022 0.0048
+radius 0.0180 0.0140 0.0080
+quadrant -z
+endwrapobject
+
+beginwrapobject 2ndmcp
+wraptype ellipsoid
+segment secondmc
+visible no
+xyz_body_rotation 85.18 -74.29 139.27
+translation 0.0059 -0.0304 -0.0006
+radius 0.0050 0.0050 0.0300
+quadrant -x
+endwrapobject
+
+beginwrapobject Secondpm
+wraptype cylinder
+segment 2proxph
+visible no
+xyz_body_rotation 42.51 -84.45 40.66
+translation 0.0075 -0.0407 0.0061
+radius 0.0040
+height 0.0100
+endwrapobject
+
+beginwrapobject Secondmd
+wraptype cylinder
+segment 2midph
+visible no
+xyz_body_rotation 28.75 -80.96 37.09
+translation 0.0036 -0.0243 0.0003
+radius 0.0030
+height 0.0100
+quadrant x
+endwrapobject
+
+beginwrapobject MPthumb
+wraptype cylinder
+segment firstmc
+visible no
+xyz_body_rotation 18.41 6.31 -47.83
+translation 0.0177 -0.0305 -0.0143
+radius 0.0085
+height 0.0200
+endwrapobject
+
+beginwrapobject IPthumb
+wraptype cylinder
+segment proximal_thumb
+visible no
+xyz_body_rotation 17.46 0.74 5.04
+translation 0.0121 -0.0302 -0.0096
+radius 0.0045
+height 0.0100
+quadrant -x
+endwrapobject
+
+beginwrapobject FPL
+wraptype ellipsoid
+segment lunate
+visible no
+xyz_body_rotation -9.53 -4.71 -3.78
+translation 0.0170 -0.0250 -0.0033
+radius 0.0160 0.0100 0.0100
+quadrant -z
+endwrapobject
+
+beginwrapobject APL
+wraptype torus
+segment firstmc1
+active no
+visible no
+xyz_body_rotation -92.24 14.20 -1.73
+translation 0.0082 0.0023 -0.0101
+radius 0.0040 0.0080
+endwrapobject
+
+
+

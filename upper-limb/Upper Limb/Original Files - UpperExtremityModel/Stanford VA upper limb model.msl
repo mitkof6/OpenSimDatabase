@@ -1,0 +1,1340 @@
+/************************************************************/
+/* Stanford VA upper limb model.msl				    	*/
+/* Kate Holzbaur 11/22/04						*/
+/*						    				*/
+/* This model is described in Holzbaur, Murray, and Delp.   */
+/* Annals of Biomed Eng 2005.						*/
+/*										*/
+/* 										*/
+/* Elbow muscles								*/
+/* The muscle paths and muscle parameters used to   		*/
+/* create this muscle file are based on the 	    		*/
+/* architectural and moment arm data from specimen  		*/
+/* M5 from Wendy Murray's PhD work (Appendix A and B of	*/
+/* her dissertation). Muscle paths were also created   	*/
+/* using the muscle paths created for specimen      		*/
+/* M10 from MR images as a guide.		    			*/			 
+/*						    				*/
+/* Muscle fiber lengths, PCSA, and pennation angles		*/
+/* are as reported in her disseration for specimen M5		*/
+/* except where noted below (see comments in        		*/
+/* individual muscle parameters). 					*/
+/*						    				*/
+/* Tendon slack lengths were set to provide	    		*/
+/* muscle operating ranges comparable to those      		*/
+/* in Fig. 3.7 of Wendy's dissertation. 		    		*/
+/* Tendon slack length was adjusted so that the     		*/
+/* muscle fibers used approximately the same range  		*/
+/* and amount of the isometric force-length curve   		*/
+/* between 20 and 120 degrees elbow flexion         		*/
+/* as shown in this figure. The operating ranges    		*/
+/* in Fig. 3.7 are an average result, based on the  		*/
+/* the sarcomere length, muscle architecture and    		*/
+/* and moment arm data for all 10 specimens.	    		*/
+/*										*/
+/* The difference in max and min of the ACTIVE force 		*/
+/* generated between 20 and 120 degrees elbow flexion 	*/
+/* was calculated using the model. Tendon slack length 	*/
+/* was adjusted until this variation was comparable to 	*/
+/* what is shown in Fig. 3.7. Some differences      		*/
+/* exist between Fig. 3.7 and the operating ranges  		*/
+/* here:									*/
+/* For the biceps, the tendon slack length was      		*/
+/* adjusted so that the operating range was         		*/
+/* comparable to the average of the long and short  		*/
+/* heads from the anatomical data.   		   		*/
+/* For the triceps, tendon slack length was        		*/
+/* adjusted so that the operating range was         		*/
+/* comparable to the average of the long and        		*/
+/* lateral heads.				    				*/
+/* The remaining differences are small, and I      		*/
+/* believe these muscle parameters capture the      		*/
+/* important features of the operating ranges       		*/
+/* reported in her dissertation					*/
+/*										*/
+/* 										*/
+/* Shoulder									*/
+/* Moment arm data is from Hughes 1998, Liu 1997, Otis 1994.*/
+/*										*/
+/* Architecture data: Lengths, PCSA, and pennation are from */
+/* Langenderfer 2004							*/
+/*										*/
+/*										*/
+/* All other muscles in wrist/forearm				*/
+/* The muscle paths and muscle parameters used to   		*/
+/* create this muscle file are based on the 	    		*/
+/* architectural and moment arm data from Loren 1996,		*/
+/* Brand and Hollister (Clinical Mechanics of the Hand)1993,*/
+/* Smutz 1998, and An 1984.   					*/
+/* 						    				*/
+/* Muscle fiber lengths, PCSA, and pennation angles		*/
+/* are as reported in Lieber 1990, 2000, An 1981, and		*/ 
+/* Jacobson 1992.								*/
+/*										*/
+/* Tendon slack lengths were set such that the model 		*/
+/* estimates active and passive moment results comparable 	*/
+/* to the literature.						 	*/
+/*						    				*/
+/* A specific tension of 45 N/cm^2 was used for forearm and */
+/* hand muscles and 140 N/cm^2 was used for shoulder and    */
+/* elbow to convert muscle PCSA to optimal muscle force.	*/
+/*						    				*/
+/************************************************************/
+
+
+beginmuscle defaultmuscle
+beginactiveforcelengthcurve
+(-35.000000, 0.000000)
+( 0.000000, 0.000000)
+( 0.401000, 0.000000)
+( 0.402000, 0.000000)
+( 0.403500, 0.000000)
+( 0.527250, 0.226667)
+( 0.628750, 0.636667)
+( 0.718750, 0.856667)
+( 0.861250, 0.950000)
+( 1.045000, 0.993333)
+( 1.217500, 0.770000)
+( 1.438750, 0.246667)
+( 1.618750, 0.000000)
+( 1.620000, 0.000000)
+( 1.621000, 0.000000)
+( 2.200000, 0.000000)
+(35.000000, 0.000000)
+endactiveforcelengthcurve
+beginpassiveforcelengthcurve
+(-35.000000, 0.000000)
+( 0.998000, 0.000000)
+( 0.999000, 0.000000)
+( 1.150000, 0.000000)
+( 1.250000, 0.035000)
+( 1.350000, 0.120000)
+( 1.450000, 0.260000)
+( 1.550000, 0.550000)
+( 1.650000, 1.170000)
+( 1.750000, 2.000000)
+( 1.750100, 2.000000)
+( 1.750200, 2.000000)
+(35.000000, 2.000000)
+endpassiveforcelengthcurve
+begintendonforcelengthcurve
+(-10.000000, 0.000000)
+(-0.002000, 0.000000)
+(-0.001000, 0.000000)
+( 0.000000, 0.000000)
+( 0.001310, 0.010800)
+( 0.002810, 0.025700)
+( 0.004310, 0.043500)
+( 0.005810, 0.065200)
+( 0.007310, 0.091500)
+( 0.008810, 0.123000)
+( 0.010300, 0.161000)
+( 0.011800, 0.208000)
+( 0.012300, 0.227000)
+( 9.200000,345.000000)
+( 9.201000,345.000000)
+( 9.202000,345.000000)
+(20.000000,345.000000)
+endtendonforcelengthcurve
+max_force   546.000
+optimal_fiber_length 0.05350
+tendon_slack_length 0.07800
+pennation_angle  8.000
+min_thickness 0.00350
+max_thickness 0.00350
+visible yes
+max_contraction_velocity 0.00000
+endmuscle
+
+
+
+/********************/
+/* shoulder muscles */
+/********************/
+
+
+beginmuscle DELT1
+beginpoints
+ 0.00896 -0.11883  0.00585 segment humerus
+ 0.01623 -0.11033  0.00412 segment humerus
+ 0.04347 -0.03252  0.00099 segment scapula
+-0.01400  0.01106  0.08021 segment clavicle
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force  1142.600
+optimal_fiber_length 0.09760
+tendon_slack_length 0.09300
+pennation_angle 22.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject delt2hum
+wrapobject DELT1hh range 2 3
+endmuscle
+
+beginmuscle DELT2
+beginpoints
+ 0.00461 -0.13611  0.00560 segment humerus
+ 0.02720  0.00535  0.04807 segment DELT2pt2
+ 0.00005  0.00294  0.02233 segment scapula
+-0.01078 -0.00034  0.00620 segment scapula
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force  1142.600
+optimal_fiber_length 0.10780
+tendon_slack_length 0.10950
+pennation_angle 15.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Deltoid2
+wrapobject delt2hum
+wrapobject TMAJ_LAT_PEC_CORBhh
+endmuscle
+
+beginmuscle DELT3
+beginpoints
+-0.05573  0.00122 -0.02512 segment scapula
+-0.07247 -0.03285  0.01233 segment scapula
+ 0.00206 -0.07602  0.01045 segment humerus
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   259.880
+optimal_fiber_length 0.13670
+tendon_slack_length 0.03800
+pennation_angle 18.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Delt3
+wrapobject delt3hum
+wrapobject TMAJ_LAT_PEC_CORBhh
+endmuscle
+
+beginmuscle SUPSP
+beginpoints
+ 0.00256  0.01063  0.02593 segment humerus
+-0.01918  0.00127 -0.01271 segment scapula
+-0.04400 -0.01512 -0.05855 segment scapula
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   487.820
+optimal_fiber_length 0.06820
+tendon_slack_length 0.03950
+pennation_angle  7.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject SUPSP
+endmuscle
+
+beginmuscle INFSP
+beginpoints
+-0.00887  0.00484  0.02448 segment humerus
+-0.07382 -0.05476 -0.04781 segment scapula
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force  1210.840
+optimal_fiber_length 0.07550
+tendon_slack_length 0.03080
+pennation_angle 18.500
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject INFSP
+wrapobject INFSP_and_TMIN_hum_head
+endmuscle
+
+beginmuscle SUBSC
+beginpoints
+ 0.01403  0.00840 -0.01331 segment humerus
+-0.01831 -0.05223 -0.02457 segment scapula
+-0.07246 -0.03943 -0.06475 segment scapula
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force  1377.810
+optimal_fiber_length 0.08730
+tendon_slack_length 0.03300
+pennation_angle 20.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject SUBSCAP
+endmuscle
+
+beginmuscle TMIN
+beginpoints
+-0.00110 -0.01264  0.02156 segment humerus
+-0.09473 -0.07991 -0.04737 segment scapula
+-0.09643 -0.08121 -0.05298 segment scapula
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   354.250
+optimal_fiber_length 0.07410
+tendon_slack_length 0.07130
+pennation_angle 24.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TMIN range 1 2
+wrapobject INFSP_and_TMIN_hum_head range 1 2
+wrapobject TMINhum range 1 2
+endmuscle
+
+beginmuscle TMAJ
+beginpoints
+ 0.00998 -0.05419 -0.00568 segment humerus
+-0.10264 -0.10319 -0.05829 segment scapula
+-0.10489 -0.10895 -0.07117 segment scapula
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   425.390
+optimal_fiber_length 0.16240
+tendon_slack_length 0.02000
+pennation_angle 16.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TMAJ_LAThum
+wrapobject LAT_TMAJhh range 1 2
+wrapobject LAT_TMAJ2hh
+endmuscle
+
+beginmuscle PECM1
+beginpoints
+ 0.01169 -0.04191  0.00780 segment humerus
+ 0.01615 -0.04045 -0.00577 segment PEC1pt2
+ 0.00958 -0.01509  0.12664 segment PEC1pt3
+ 0.00321 -0.00013  0.05113 segment clavicle
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   364.410
+optimal_fiber_length 0.14420
+tendon_slack_length 0.00280
+pennation_angle 17.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Thorax
+wrapobject PEC12hum range 2 3
+wrapobject PEC1hh
+endmuscle
+
+beginmuscle PECM2
+beginpoints
+ 0.01274 -0.04289  0.00785 segment humerus
+ 0.01453 -0.04568 -0.00687 segment PEC2pt2
+ 0.02018 -0.04165  0.12690 segment PEC2pt3
+ 0.03091 -0.03922  0.09705 segment thorax
+ 0.02769 -0.04498  0.02271 segment thorax
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   515.410
+optimal_fiber_length 0.13850
+tendon_slack_length 0.08900
+pennation_angle 25.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Thorax
+wrapobject PEC12hum range 2 3
+wrapobject TMAJ_LAT_PEC_CORBhh
+wrapobject PEC23hh
+endmuscle
+
+beginmuscle PECM3
+beginpoints
+ 0.01269 -0.04375  0.00750 segment humerus
+ 0.01243 -0.05157 -0.01807 segment PEC3pt2
+ 0.02984 -0.07100  0.11510 segment PEC3pt3
+ 0.05250 -0.08417  0.08935 segment thorax
+ 0.05724 -0.11654  0.03787 segment thorax
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   390.550
+optimal_fiber_length 0.13850
+tendon_slack_length 0.13200
+pennation_angle 25.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Thorax
+wrapobject PEC3hum range 2 3
+wrapobject PEC23hh
+endmuscle
+
+beginmuscle LAT1
+beginpoints
+ 0.01050 -0.03415 -0.00653 segment humerus
+-0.07947 -0.08581 -0.02188 segment LAT1pt2
+-0.11215 -0.09779 -0.05322 segment LAT1pt3
+-0.11828 -0.10118  0.03316 segment thorax
+-0.09578 -0.11724  0.00882 segment thorax
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   389.100
+optimal_fiber_length 0.25400
+tendon_slack_length 0.12000
+pennation_angle 25.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TMAJ_LAThum
+wrapobject LAT_TMAJhh range 1 2
+wrapobject LAT_TMAJ2hh
+endmuscle
+
+beginmuscle LAT2
+beginpoints
+ 0.00968 -0.04071 -0.00611 segment humerus
+-0.07640 -0.10220 -0.01808 segment LAT2pt2
+-0.10054 -0.13969 -0.05258 segment LAT2pt3
+-0.10992 -0.16908  0.02878 segment thorax
+-0.07186 -0.18818  0.00815 segment thorax
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   389.100
+optimal_fiber_length 0.23240
+tendon_slack_length 0.17650
+pennation_angle 19.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TMAJ_LAThum
+wrapobject LAT_TMAJhh range 1 2
+wrapobject LAT_TMAJ2hh
+endmuscle
+
+beginmuscle LAT3
+beginpoints
+ 0.01208 -0.03922 -0.00416 segment humerus
+-0.05678 -0.13303 -0.02130 segment LAT3pt2
+-0.09449 -0.17553 -0.04606 segment LAT3pt3
+-0.11157 -0.19387  0.05532 segment thorax
+-0.07117 -0.24858  0.00907 segment thorax
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   281.660
+optimal_fiber_length 0.27890
+tendon_slack_length 0.14030
+pennation_angle 21.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TMAJ_LAThum
+wrapobject LAT_TMAJhh range 1 2
+wrapobject LAT_TMAJ2hh
+endmuscle
+
+
+/*****************/
+/* elbow muscles */
+/*****************/
+
+
+beginmuscle CORB
+beginpoints
+ 0.01250 -0.04127 -0.02652 segment scapula
+ 0.00483 -0.06958 -0.01563 segment scapula
+ 0.00743 -0.15048 -0.00782 segment humerus
+endpoints
+begingroups
+shoulder 
+endgroups
+max_force   242.460
+optimal_fiber_length 0.09320
+tendon_slack_length 0.09700
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject CORBhum midpoint
+wrapobject TMAJ_LAT_PEC_CORBhh
+endmuscle
+
+beginmuscle TRIlong
+beginpoints
+-0.04565 -0.04073 -0.01377 segment scapula
+-0.02714 -0.11441 -0.00664 segment humerus
+-0.03184 -0.22637 -0.01217 segment humerus
+-0.01743 -0.26757 -0.01208 segment humerus
+-0.02190  0.01046 -0.00078 segment ulna
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   798.520
+optimal_fiber_length 0.13400
+tendon_slack_length 0.14300
+pennation_angle 12.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TRI
+wrapobject TRIlonghh
+wrapobject TRIlongglen
+endmuscle
+
+beginmuscle TRIlat
+beginpoints
+-0.00599 -0.12646  0.00428 segment humerus
+-0.02344 -0.14528  0.00928 segment humerus
+-0.03184 -0.22637 -0.01217 segment humerus
+-0.01743 -0.26757 -0.01208 segment humerus
+-0.02190  0.01046 -0.00078 segment ulna
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   624.300
+optimal_fiber_length 0.11380
+tendon_slack_length 0.09800
+pennation_angle  9.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TRI
+endmuscle
+
+beginmuscle TRImed
+beginpoints
+-0.00838 -0.13695 -0.00906 segment humerus
+-0.02601 -0.15139 -0.01080 segment humerus
+-0.03184 -0.22637 -0.01217 segment humerus
+-0.01743 -0.26757 -0.01208 segment humerus
+-0.02190  0.01046 -0.00078 segment ulna
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   624.300
+optimal_fiber_length 0.11380
+tendon_slack_length 0.09080
+pennation_angle  9.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject TRI
+endmuscle
+
+beginmuscle ANC
+beginpoints
+-0.00744 -0.28359  0.00979 segment humerus
+-0.02532 -0.00124  0.00600 segment ulna
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   350.000
+optimal_fiber_length 0.02700
+tendon_slack_length 0.01800
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject ANC
+endmuscle
+
+beginmuscle SUP
+beginpoints
+ 0.00996 -0.06096  0.00075 segment radius
+ 0.01201 -0.05170 -0.00107 segment radius
+-0.01360 -0.03384  0.02013 segment ulna
+endpoints
+begingroups
+forearm 
+endgroups
+max_force   476.000
+optimal_fiber_length 0.03300
+tendon_slack_length 0.02800
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject SUP axial
+endmuscle
+
+beginmuscle BIClong
+beginpoints
+-0.03123 -0.02353 -0.01305 segment scapula
+-0.02094 -0.01309 -0.00461 segment scapula
+ 0.02131  0.01793  0.01028 segment humerus
+ 0.02378 -0.00511  0.01201 segment humerus
+ 0.01345 -0.02827  0.00136 segment humerus
+ 0.01068 -0.07736 -0.00165 segment humerus
+ 0.01703 -0.12125  0.00024 segment humerus
+ 0.02280 -0.17540 -0.00630 segment humerus
+ 0.00000  0.00000  0.00000 segment bicpt2
+ 0.00000  0.00000  0.00000 segment bicpt  ranges 1 pro_sup (  -36.60,   90.00)
+-0.00200 -0.03750 -0.00200 segment radius
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   624.300
+optimal_fiber_length 0.11570
+tendon_slack_length 0.27230
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Elbow_BIC_BRD
+wrapobject BIClong range 2 3
+endmuscle
+
+beginmuscle BICshort
+beginpoints
+ 0.01268 -0.03931 -0.02625 segment scapula
+ 0.00093 -0.06704 -0.01593 segment scapula
+ 0.01117 -0.07576 -0.01101 segment humerus
+ 0.01703 -0.12125 -0.01079 segment humerus
+ 0.02280 -0.17540 -0.00630 segment humerus
+ 0.00000  0.00000  0.00000 segment bicpt2
+ 0.00000  0.00000  0.00000 segment bicpt  ranges 1 pro_sup (  -36.60,   90.00)
+-0.00200 -0.03750 -0.00200 segment radius
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   435.560
+optimal_fiber_length 0.13210
+tendon_slack_length 0.19230
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Elbow_BIC_BRD
+endmuscle
+
+beginmuscle BRA
+beginpoints
+ 0.00680 -0.17390 -0.00360 segment humerus
+ 0.01894 -0.28559 -0.01105 segment humerus  ranges 1 elbow_flexion (    0.00,   46.59)
+ 0.00498 -0.01463  0.00128 segment ulna  ranges 1 elbow_flexion (    0.00,   46.59)
+-0.00320 -0.02390  0.00090 segment ulna
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   987.260
+optimal_fiber_length 0.08580
+tendon_slack_length 0.05350
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+endmuscle
+
+beginmuscle BRD
+beginpoints
+-0.00980 -0.19963  0.00223 segment humerus
+ 0.03577 -0.12742  0.02315 segment radius
+ 0.04190 -0.22100  0.02240 segment radius
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   261.330
+optimal_fiber_length 0.17260
+tendon_slack_length 0.13300
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Elbow_BIC_BRD
+endmuscle
+
+
+/*******************/
+/* forearm muscles */
+/*******************/
+
+
+beginmuscle ECRL
+beginpoints
+-0.00730 -0.26090  0.00910 segment humerus
+ 0.03195 -0.13463  0.02779 segment radius
+ 0.04243 -0.23684  0.03620 segment radius
+ 0.00249  0.01640  0.00080 segment secondmc
+endpoints
+begingroups
+elbow 
+endgroups
+max_force   304.890
+optimal_fiber_length 0.08100
+tendon_slack_length 0.22400
+pennation_angle  0.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Elbow_PT_ECRL
+wrapobject ECRL
+endmuscle
+
+beginmuscle ECRB
+beginpoints
+ 0.01349 -0.29048  0.01698 segment humerus
+ 0.02905 -0.13086  0.02385 segment radius
+ 0.03549 -0.22805  0.03937 segment radius
+ 0.00452  0.02788  0.00112 segment thirdmc
+endpoints
+begingroups
+forearm extensor radial wrist 
+endgroups
+max_force   100.520
+optimal_fiber_length 0.05850
+tendon_slack_length 0.22230
+pennation_angle  8.900
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject ECRB
+endmuscle
+
+beginmuscle ECU
+beginpoints
+ 0.00083 -0.28955  0.01880 segment humerus
+-0.01391 -0.03201  0.02947 segment ulna
+-0.01705 -0.05428  0.02868 segment ulna
+-0.01793 -0.09573  0.03278 segment ulna
+-0.01421 -0.22696  0.03481 segment radius
+-0.00061  0.02067  0.00294 segment fifthmc
+endpoints
+begingroups
+forearm extensor ulnar wrist 
+endgroups
+max_force    93.170
+optimal_fiber_length 0.06220
+tendon_slack_length 0.22850
+pennation_angle  3.500
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject ECU
+endmuscle
+
+beginmuscle FCR
+beginpoints
+ 0.00758 -0.27806 -0.03705 segment humerus
+ 0.02110 -0.21943  0.00127 segment radius
+-0.00345  0.01918 -0.00921 segment secondmc
+endpoints
+begingroups
+forearm flexor radial wrist 
+endgroups
+max_force    73.960
+optimal_fiber_length 0.06280
+tendon_slack_length 0.24400
+pennation_angle  3.100
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Elbow_PT_ECRL
+wrapobject FCR
+endmuscle
+
+beginmuscle FCU
+beginpoints
+ 0.00219 -0.27740 -0.03880 segment humerus
+ 0.00549  0.00000  0.00000 segment FCUpt
+ 0.01082 -0.22327  0.00969 segment radius
+ 0.00154  0.01703 -0.00330 segment fifthmc
+endpoints
+begingroups
+forearm flexor ulnar wrist 
+endgroups
+max_force   128.930
+optimal_fiber_length 0.05090
+tendon_slack_length 0.26500
+pennation_angle 12.100
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FCU
+wrapobject Elbow_PT_ECRL
+endmuscle
+
+beginmuscle PL
+beginpoints
+ 0.00457 -0.27519 -0.03865 segment humerus
+ 0.02531 -0.23915 -0.00276 segment radius
+ 0.00917 -0.01898 -0.01754 segment capitate
+ 0.00179  0.00828 -0.00245 segment thirdmc
+endpoints
+begingroups
+forearm flexor hand radial 
+endgroups
+max_force    26.720
+optimal_fiber_length 0.06380
+tendon_slack_length 0.26940
+pennation_angle  4.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject PL
+wrapobject Elbow_PT_ECRL
+endmuscle
+
+beginmuscle PT
+beginpoints
+ 0.00360 -0.27590 -0.03650 segment humerus
+ 0.00846 -0.03373 -0.01432 segment ulna
+ 0.00464 -0.00026 -0.00214 segment ptpt
+ 0.02360 -0.09340  0.00940 segment radius  ranges 1 pro_sup (  -90.00,   29.20)
+ 0.02540 -0.10880  0.01980 segment radius
+endpoints
+begingroups
+elbow forearm 
+endgroups
+max_force   566.220
+optimal_fiber_length 0.04920
+tendon_slack_length 0.09800
+pennation_angle 10.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Elbow_PT_ECRL
+endmuscle
+
+beginmuscle PQ
+beginpoints
+ 0.03245 -0.19998  0.01962 segment radius
+ 0.00193 -0.20972  0.03632 segment ulna
+endpoints
+begingroups
+forearm 
+endgroups
+max_force    75.480
+optimal_fiber_length 0.02820
+tendon_slack_length 0.00500
+pennation_angle 10.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject PQ2
+wrapobject PQ1
+endmuscle
+
+
+/****************/
+/* hand muscles */
+/****************/
+
+
+beginmuscle FDSL
+beginpoints
+ 0.00421 -0.27598 -0.03864 segment humerus
+ 0.01377 -0.18718  0.00205 segment radius
+-0.00235 -0.01393 -0.01376 segment capitate
+-0.00294  0.00846 -0.01213 segment fourthmc
+-0.00032 -0.01968 -0.00757 segment fifthmc
+-0.00323 -0.03568 -0.00417 segment 5proxph
+-0.00260 -0.01983 -0.00350 segment 5midph
+endpoints
+begingroups
+forearm flexor ulnar hand 
+endgroups
+max_force    16.550
+optimal_fiber_length 0.05150
+tendon_slack_length 0.33830
+pennation_angle  5.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDS
+wrapobject Elbow_PT_ECRL
+endmuscle
+
+beginmuscle FDSR
+beginpoints
+ 0.00479 -0.27880 -0.03731 segment humerus
+ 0.01571 -0.18666  0.00267 segment radius
+-0.00082 -0.01344 -0.01359 segment capitate
+-0.00914  0.00544 -0.01085 segment thirdmc
+-0.00290 -0.02334 -0.00767 segment fourthmc
+-0.00172 -0.03947 -0.00102 segment 4proxph
+-0.00002 -0.02501  0.00029 segment 4midph
+endpoints
+begingroups
+forearm flexor ulnar hand 
+endgroups
+max_force    57.900
+optimal_fiber_length 0.07360
+tendon_slack_length 0.32800
+pennation_angle  4.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDS
+wrapobject Elbow_PT_ECRL
+endmuscle
+
+beginmuscle FDSM
+beginpoints
+-0.00669 -0.02713 -0.00191 segment ulna
+ 0.01899 -0.18706  0.00424 segment radius
+ 0.00680 -0.01377 -0.01399 segment capitate
+ 0.00128  0.00639 -0.00952 segment thirdmc
+ 0.00263 -0.02478 -0.00183 segment thirdmc
+ 0.00252 -0.04307  0.00417 segment 3proxph
+ 0.00155 -0.02773  0.00067 segment 3midph
+endpoints
+begingroups
+forearm flexor radial hand 
+endgroups
+max_force    91.030
+optimal_fiber_length 0.07490
+tendon_slack_length 0.29500
+pennation_angle  7.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDS
+endmuscle
+
+beginmuscle FDSI
+beginpoints
+-0.00676 -0.02819 -0.00137 segment ulna
+ 0.02145 -0.18623  0.00552 segment radius
+ 0.00889 -0.01366 -0.01387 segment capitate
+-0.00407 -0.00025 -0.00479 segment secondmc
+ 0.00304 -0.02206 -0.00579 segment secondmc
+ 0.00427 -0.03367  0.00444 segment 2proxph
+ 0.00228 -0.02088 -0.00029 segment 2midph
+endpoints
+begingroups
+forearm flexor radial hand 
+endgroups
+max_force    61.240
+optimal_fiber_length 0.08350
+tendon_slack_length 0.27500
+pennation_angle  6.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDS
+wrapobject 2ndmcp
+endmuscle
+
+beginmuscle FDPL
+beginpoints
+-0.00628 -0.03214  0.00254 segment ulna
+ 0.01409 -0.18516  0.00861 segment radius
+-0.00088 -0.01027 -0.01188 segment capitate
+-0.00686  0.00890 -0.00619 segment fourthmc
+-0.00185 -0.01878 -0.00706 segment fifthmc
+-0.00490 -0.03465 -0.00598 segment 5proxph
+-0.00032 -0.00433 -0.00165 segment 5distph
+endpoints
+begingroups
+forearm flexor ulnar hand 
+endgroups
+max_force    79.650
+optimal_fiber_length 0.07490
+tendon_slack_length 0.28190
+pennation_angle  8.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDP
+endmuscle
+
+beginmuscle FDPR
+beginpoints
+-0.00502 -0.03374  0.00273 segment ulna
+ 0.01580 -0.18629  0.00803 segment radius
+ 0.00106 -0.01177 -0.01184 segment capitate
+-0.01040  0.00473 -0.00804 segment thirdmc
+-0.00289 -0.02297 -0.00609 segment fourthmc
+-0.00304 -0.04002 -0.00075 segment 4proxph
+ 0.00010 -0.00660 -0.00066 segment 4distph
+endpoints
+begingroups
+forearm flexor ulnar hand 
+endgroups
+max_force    64.080
+optimal_fiber_length 0.07980
+tendon_slack_length 0.28200
+pennation_angle  7.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDP
+endmuscle
+
+beginmuscle FDPM
+beginpoints
+-0.00522 -0.03327  0.00210 segment ulna
+ 0.01906 -0.18644  0.00785 segment radius
+ 0.00335 -0.01280 -0.01144 segment capitate
+-0.00128  0.00609 -0.00838 segment thirdmc
+ 0.00034 -0.02347 -0.00303 segment thirdmc
+ 0.00102 -0.04333  0.00294 segment 3proxph
+ 0.00023 -0.00505 -0.00226 segment 3distph
+endpoints
+begingroups
+forearm flexor ulnar hand 
+endgroups
+max_force    81.650
+optimal_fiber_length 0.08350
+tendon_slack_length 0.29300
+pennation_angle  6.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDP
+endmuscle
+
+beginmuscle FDPI
+beginpoints
+-0.00647 -0.03176  0.00280 segment ulna
+ 0.02080 -0.18560  0.00915 segment radius
+ 0.00896 -0.01168 -0.01212 segment capitate
+-0.00432  0.00663 -0.00248 segment secondmc
+ 0.00420 -0.02262 -0.00499 segment secondmc
+ 0.00581 -0.03555  0.00306 segment 2proxph
+ 0.00046 -0.00460 -0.00301 segment 2distph
+endpoints
+begingroups
+forearm flexor radial hand 
+endgroups
+max_force    68.270
+optimal_fiber_length 0.07490
+tendon_slack_length 0.29350
+pennation_angle  7.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FDP
+wrapobject 2ndmcp
+endmuscle
+
+beginmuscle EDCL
+beginpoints
+-0.00040 -0.28831  0.01870 segment humerus
+ 0.00130 -0.03888  0.01405 segment EDCpt
+ 0.00993 -0.22304  0.03618 segment radius
+-0.00478 -0.01915  0.00447 segment fifthmc
+-0.00716 -0.03302 -0.00089 segment 5proxph
+-0.00142  0.00068  0.00115 segment 5distph
+endpoints
+begingroups
+forearm extensor ulnar hand 
+endgroups
+max_force    13.110
+optimal_fiber_length 0.06500
+tendon_slack_length 0.29650
+pennation_angle  2.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject EDCL range 3 4
+endmuscle
+
+beginmuscle EDCR
+beginpoints
+-0.00156 -0.28936  0.01782 segment humerus
+ 0.00260 -0.03991  0.01552 segment EDCpt
+ 0.00882 -0.22366  0.04284 segment radius
+-0.00338 -0.02330  0.00513 segment fourthmc
+-0.00546 -0.03868  0.00413 segment 4proxph
+-0.00171 -0.00375  0.00241 segment 4distph
+endpoints
+begingroups
+forearm extensor ulnar hand 
+endgroups
+max_force    34.040
+optimal_fiber_length 0.06260
+tendon_slack_length 0.32700
+pennation_angle  3.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject EDCR
+endmuscle
+
+beginmuscle EDCM
+beginpoints
+ 0.00051 -0.28984  0.01949 segment humerus
+ 0.00316 -0.03948  0.01528 segment EDCpt
+ 0.01440 -0.22323  0.04223 segment radius
+ 0.00131 -0.02342  0.00764 segment thirdmc
+ 0.00179 -0.04239  0.01003 segment 3proxph
+ 0.00077 -0.01111  0.00201 segment 3distph
+endpoints
+begingroups
+forearm extensor radial hand 
+endgroups
+max_force    35.320
+optimal_fiber_length 0.07240
+tendon_slack_length 0.33500
+pennation_angle  3.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject EDCM
+endmuscle
+
+beginmuscle EDCI
+beginpoints
+ 0.00065 -0.28898  0.01869 segment humerus
+ 0.00228 -0.03918  0.01483 segment EDCpt
+ 0.01533 -0.22314  0.04196 segment radius
+ 0.00474 -0.02656  0.01293 segment secondmc
+ 0.00192 -0.01101  0.01021 segment 2proxph
+ 0.00771 -0.04191  0.01399 segment 2proxph
+ 0.00123 -0.00941  0.00581 segment 2midph
+ 0.00260 -0.01959  0.00363 segment 2midph
+ 0.00025 -0.00370  0.00228 segment 2distph
+endpoints
+begingroups
+forearm extensor radial hand 
+endgroups
+max_force    18.260
+optimal_fiber_length 0.07000
+tendon_slack_length 0.32200
+pennation_angle  3.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject EDCI range 3 4
+wrapobject Secondpm range 6 7
+wrapobject Secondmd range 8 9
+endmuscle
+
+beginmuscle EDM
+beginpoints
+ 0.00089 -0.28919  0.01847 segment humerus
+-0.00977 -0.03907  0.03085 segment ulna
+-0.00755 -0.08267  0.03646 segment ulna
+ 0.00454 -0.22641  0.03678 segment radius
+ 0.00131  0.02436  0.00794 segment fifthmc
+-0.00537 -0.01848  0.00316 segment fifthmc
+-0.00540 -0.03237  0.00015 segment 5proxph
+-0.00226 -0.00334  0.00062 segment 5distph
+endpoints
+begingroups
+forearm extensor ulnar hand 
+endgroups
+max_force    25.250
+optimal_fiber_length 0.06750
+tendon_slack_length 0.32200
+pennation_angle  3.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject EDM range 4 5
+endmuscle
+
+beginmuscle EIP
+beginpoints
+-0.00394 -0.16652  0.03682 segment ulna
+ 0.00171 -0.17469  0.04049 segment ulna
+ 0.01076 -0.22783  0.03664 segment radius
+-0.01081  0.01528  0.00681 segment secondmc
+ 0.00441 -0.02602  0.01285 segment secondmc
+ 0.00171 -0.01033  0.00947 segment 2proxph
+ 0.00714 -0.04133  0.01413 segment 2proxph
+ 0.00115 -0.00899  0.00597 segment 2midph
+ 0.00294 -0.02043  0.00377 segment 2midph
+ 0.00264 -0.01233  0.00266 segment 2distph
+endpoints
+begingroups
+forearm extensor radial hand 
+endgroups
+max_force    21.700
+optimal_fiber_length 0.05890
+tendon_slack_length 0.18600
+pennation_angle  6.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject Extensor_ellipse
+wrapobject Secondpm range 7 8
+wrapobject Secondmd range 9 10
+endmuscle
+
+beginmuscle EPL
+beginpoints
+-0.01412 -0.09706  0.02952 segment ulna
+ 0.00124 -0.13668  0.02270 segment radius
+ 0.02702 -0.21872  0.03828 segment radius
+ 0.03382 -0.22754  0.04607 segment radius
+ 0.04234 -0.23771  0.04173 segment radius
+ 0.02428  0.00014  0.00608 segment capitate
+ 0.00809 -0.00460  0.00992 segment trapezium
+ 0.00656 -0.00430  0.00792 segment firstmc
+ 0.02165 -0.02420 -0.00533 segment firstmc
+ 0.01147 -0.00362  0.00156 segment proximal_thumb
+ 0.01921 -0.02650 -0.01038 segment proximal_thumb
+ 0.00543 -0.00714 -0.00464 segment distal_thumb
+endpoints
+begingroups
+forearm extensor radial thumb hand 
+endgroups
+max_force    39.460
+optimal_fiber_length 0.05400
+tendon_slack_length 0.22050
+pennation_angle  6.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject MPthumb
+endmuscle
+
+beginmuscle EPB
+beginpoints
+ 0.01924 -0.14695  0.02114 segment radius
+ 0.02276 -0.15857  0.02665 segment radius
+ 0.03831 -0.19722  0.03834 segment radius
+ 0.05235 -0.23611  0.02699 segment radius
+ 0.03123  0.00256 -0.00327 segment capitate
+ 0.01443 -0.00337 -0.00405 segment firstmc1
+ 0.02173 -0.02303 -0.01141 segment firstmc
+ 0.00927 -0.00618 -0.00557 segment proximal_thumb
+endpoints
+begingroups
+forearm radial thumb flexor hand 
+endgroups
+max_force    14.200
+optimal_fiber_length 0.06750
+tendon_slack_length 0.11550
+pennation_angle  7.200
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject MPthumb
+endmuscle
+
+beginmuscle FPL
+beginpoints
+ 0.00971 -0.09458  0.01769 segment radius
+ 0.01658 -0.13525  0.01915 segment radius
+ 0.01869 -0.17932  0.01988 segment radius
+ 0.03800 -0.23171  0.01580 segment radius
+ 0.01869  0.00882 -0.01547 segment FPLpt
+ 0.01244 -0.02207 -0.02089 segment FPLpt2
+-0.00608 -0.01624 -0.00940 segment firstmc
+ 0.00208 -0.02297 -0.00956 segment firstmc
+-0.00450 -0.01842 -0.00508 segment proximal_thumb
+ 0.00590 -0.02602 -0.01114 segment proximal_thumb
+ 0.00242 -0.01127 -0.00412 segment distal_thumb
+endpoints
+begingroups
+forearm flexor radial thumb hand 
+endgroups
+max_force    77.200
+optimal_fiber_length 0.05520
+tendon_slack_length 0.19380
+pennation_angle  7.000
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject FPL
+wrapobject IPthumb
+wrapobject MPthumb
+endmuscle
+
+beginmuscle APL
+beginpoints
+ 0.01154 -0.09477  0.01681 segment radius
+ 0.03030 -0.13970  0.03507 segment radius
+ 0.03993 -0.16072  0.03400 segment radius
+ 0.04397 -0.17845  0.03134 segment radius
+ 0.05505 -0.23084  0.02368 segment radius
+ 0.03385  0.00634 -0.00745 segment APLpt
+ 0.01058  0.00662 -0.00619 segment firstmc1
+ 0.00629  0.00323 -0.00589 segment firstmc
+ 0.00827 -0.00586 -0.00604 segment firstmc
+endpoints
+begingroups
+forearm radial flexor thumb hand 
+endgroups
+max_force    59.530
+optimal_fiber_length 0.07130
+tendon_slack_length 0.12950
+pennation_angle  7.500
+max_thickness 0.00350
+min_material def_min_muscle
+max_material def_max_muscle
+visible yes
+wrapobject APL range 5 6
+endmuscle
+

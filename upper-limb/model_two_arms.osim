@@ -132,8 +132,7 @@
 			</CMC_Joint>
 		</defaults>
 		<credits>Dimitar Stanev</credits>
-		<publications>
-		
+		<publications>	
 		</publications>
 		<length_units>meters</length_units>
 		<force_units>N</force_units>
