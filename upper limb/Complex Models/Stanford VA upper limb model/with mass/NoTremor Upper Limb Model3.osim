@@ -30,7 +30,106 @@
 				<!--Deactivation time constant (in seconds).-->
 				<deactivation_time_constant>0.04</deactivation_time_constant>
 			</Millard2012EquilibriumMuscle>
+            <CMC_Joint name="default">
+				<!--Flag (true or false) indicating whether or not a task is enabled.-->
+				<on> false </on>
+				<!--Weight with which a task is tracked relative to other tasks. To track
+				    a task more tightly, make the weight larger.-->
+				<weight>       1.00000000       1.00000000       1.00000000 </weight>
+				<!--Name of body frame with respect to which a tracking objective is
+				    specified. The special name 'center_of_mass' refers to the system
+				    center of mass. This property is not used for tracking joint angles.-->
+				<wrt_body> -1 </wrt_body>
+				<!--Name of body frame in which the tracking objectives are expressed.
+				    This property is not used for tracking joint angles.-->
+				<express_body> -1 </express_body>
+				<!--Array of 3 flags (each true or false) specifying whether a component
+				    of a task is active.  For example, tracking the trajectory of a point
+				    in space could have three components (x,y,z).  This allows each of
+				    those to be made active (true) or inactive (false).  A task for
+				    tracking a joint coordinate only has one component.-->
+				<active> false false false </active>
+				<!--Position error feedback gain (stiffness). To achieve critical damping
+				    of errors, choose kv = 2*sqrt(kp).-->
+				<kp>       1.00000000       1.00000000       1.00000000 </kp>
+				<!--Velocity error feedback gain (damping). To achieve critical damping of
+				    errors, choose kv = 2*sqrt(kp).-->
+				<kv>       1.00000000       1.00000000       1.00000000 </kv>
+				<!--Feedforward acceleration gain.  This is normally set to 1.0, so no
+				    gain.-->
+				<ka>       1.00000000       1.00000000       1.00000000 </ka>
+				<!--Direction vector[3] for component 0 of a task. Joint tasks do not use
+				    this propery.-->
+				<r0>       0.00000000       0.00000000       0.00000000 </r0>
+				<!--Direction vector[3] for component 1 of a task. Joint tasks do not use
+				    this property.-->
+				<r1>       0.00000000       0.00000000       0.00000000 </r1>
+				<!--Direction vector[3] for component 2 of a task. Joint tasks do not use
+				    this property.-->
+				<r2>       0.00000000       0.00000000       0.00000000 </r2>
+				<!--Name of the coordinate to be tracked.-->
+				<coordinate>  </coordinate>
+				<!--Error limit on the tracking accuracy for this coordinate. If the
+				    tracking errors approach this limit, the weighting for this coordinate
+				    is increased.-->
+				<limit>       0.00000000 </limit>
+			</CMC_Joint>
+            <ControlLinear name="default">
+				<is_model_control> true </is_model_control>
+				<extrapolate> true </extrapolate>
+				<default_min>       0.02000000 </default_min>
+				<default_max>       1.00000000 </default_max>
+				<filter_on> false </filter_on>
+				<use_steps> true </use_steps>
+				<x_nodes/>
+				<min_nodes/>
+				<max_nodes/>
+				<kp>     100.00000000 </kp>
+				<kv>      20.00000000 </kv>
+			</ControlLinear>
+			<CoordinateActuator name="default">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> Unassigned </coordinate>
+				<optimal_force>    1000.00000000 </optimal_force>
+			</CoordinateActuator>
+			<PointActuator name="default">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<body>  </body>
+				<point>       0.00000000       0.00000000       0.00000000 </point>
+				<point_is_global> false </point_is_global>
+				<direction>      -1.00000000      -0.00000000      -0.00000000 </direction>
+				<force_is_global> true </force_is_global>
+				<optimal_force>    1000.00000000 </optimal_force>
+			</PointActuator>
+			<TorqueActuator name="default">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<bodyA>  </bodyA>
+				<bodyB>  </bodyB>
+				<torque_is_global> true </torque_is_global>
+				<axis>      -1.00000000      -0.00000000      -0.00000000 </axis>
+				<optimal_force>       1.00000000 </optimal_force>
+			</TorqueActuator>
 		</defaults>
+        <length_units> meters </length_units>
+		<force_units> N </force_units>
 		<!--Acceleration due to gravity.-->
 		<gravity> 0 -9.80665 0</gravity>
 		<!--Bodies in the model.-->
@@ -50,7 +149,7 @@
 				</Body>
 				<Body name="thorax">
 					<mass>26.83</mass>
-					<mass_center> 0 -0.16 0</mass_center>
+					<mass_center>0 -0.16 0</mass_center>
 					<inertia_xx>1.4745</inertia_xx>
 					<inertia_yy>0.7555</inertia_yy>
 					<inertia_zz>1.4314</inertia_zz>
@@ -119,14 +218,14 @@
 					</WrapObjectSet>
 				</Body>
 				<Body name="clavicle">
-					<mass>1e-006</mass>
-					<mass_center> 0 0 0</mass_center>
-					<inertia_xx>1</inertia_xx>
-					<inertia_yy>1</inertia_yy>
-					<inertia_zz>1</inertia_zz>
-					<inertia_xy>0</inertia_xy>
-					<inertia_xz>0</inertia_xz>
-					<inertia_yz>0</inertia_yz>
+					<mass>0.15600000</mass>
+					<mass_center>-0.01109600 0.00637230 0.05416800</mass_center>
+					<inertia_xx>0.00024259</inertia_xx>
+					<inertia_yy>0.00025526</inertia_yy>
+					<inertia_zz>0.00004442</inertia_zz>
+					<inertia_xy>-0.00001898</inertia_xy>
+					<inertia_xz>-0.00006994</inertia_xz>
+					<inertia_yz>0.00005371</inertia_yz>
 					<!--Joint that connects this body with the parent body.-->
 					<Joint>
 						<CustomJoint name="sternoclavicular">
@@ -274,7 +373,7 @@
 					</VisibleObject>
 				</Body>
 				<Body name="clavphant">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -403,14 +502,14 @@
 					</Joint>
 				</Body>
 				<Body name="scapula">
-					<mass>1e-006</mass>
-					<mass_center> 0 0 0</mass_center>
-					<inertia_xx>1</inertia_xx>
-					<inertia_yy>1</inertia_yy>
-					<inertia_zz>1</inertia_zz>
-					<inertia_xy>0</inertia_xy>
-					<inertia_xz>0</inertia_xz>
-					<inertia_yz>0</inertia_yz>
+					<mass>0.70396000</mass>
+					<mass_center>-0.05469400 -0.03503200 -0.04373400</mass_center>
+					<inertia_xx>0.00124290</inertia_xx>
+					<inertia_yy>0.00115040</inertia_yy>
+					<inertia_zz>0.00136510</inertia_zz>
+					<inertia_xy>0.00044940</inertia_xy>
+					<inertia_xz>0.00040922</inertia_xz>
+					<inertia_yz>0.00024110</inertia_yz>
 					<!--Joint that connects this body with the parent body.-->
 					<Joint>
 						<CustomJoint name="acromioclavicular">
@@ -624,7 +723,7 @@
 					</WrapObjectSet>
 				</Body>
 				<Body name="scapphant">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -769,7 +868,7 @@
 					</Joint>
 				</Body>
 				<Body name="humphant">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -882,7 +981,7 @@
 					</Joint>
 				</Body>
 				<Body name="humphant1">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -1011,14 +1110,14 @@
 					</Joint>
 				</Body>
 				<Body name="humerus">
-					<mass>2.0325</mass>
-					<mass_center> 0 -0.164502 0</mass_center>
-					<inertia_xx>0.011946</inertia_xx>
-					<inertia_yy>0.004121</inertia_yy>
-					<inertia_zz>0.013409</inertia_zz>
-					<inertia_xy>0</inertia_xy>
-					<inertia_xz>0</inertia_xz>
-					<inertia_yz>0</inertia_yz>
+					<mass>1.99757000</mass>
+					<mass_center>0.01806404 -0.14014073 -0.01274600</mass_center>
+					<inertia_xx>0.01227763</inertia_xx>
+					<inertia_yy>0.00255133</inertia_yy>
+					<inertia_zz>0.01257888</inertia_zz>
+					<inertia_xy>-0.00034741</inertia_xy>
+					<inertia_xz>-0.00023250</inertia_xz>
+					<inertia_yz>0.00122930</inertia_yz>
 					<!--Joint that connects this body with the parent body.-->
 					<Joint>
 						<CustomJoint name="shoulder2">
@@ -1353,14 +1452,14 @@
 					</WrapObjectSet>
 				</Body>
 				<Body name="ulna">
-					<mass>0.6075</mass>
-					<mass_center> 0 -0.120515 0</mass_center>
-					<inertia_xx>0.002962</inertia_xx>
-					<inertia_yy>0.000618</inertia_yy>
-					<inertia_zz>0.003213</inertia_zz>
-					<inertia_xy>0</inertia_xy>
-					<inertia_xz>0</inertia_xz>
-					<inertia_yz>0</inertia_yz>
+					<mass>1.10530000</mass>
+					<mass_center>0.00971783 -0.09595089 0.02428600</mass_center>
+					<inertia_xx>0.00541309</inertia_xx>
+					<inertia_yy>0.00115318</inertia_yy>
+					<inertia_zz>0.00494361</inertia_zz>
+					<inertia_xy>0.00031686</inertia_xy>
+					<inertia_xz>-0.00007615</inertia_xz>
+					<inertia_yz>0.00109169</inertia_yz>
 					<!--Joint that connects this body with the parent body.-->
 					<Joint>
 						<CustomJoint name="elbow">
@@ -1505,14 +1604,14 @@
 					</WrapObjectSet>
 				</Body>
 				<Body name="radius">
-					<mass>0.6075</mass>
-					<mass_center> 0.03 -0.120515 0</mass_center>
-					<inertia_xx>0.002962</inertia_xx>
-					<inertia_yy>0.000618</inertia_yy>
-					<inertia_zz>0.003212</inertia_zz>
-					<inertia_xy>0</inertia_xy>
-					<inertia_xz>0</inertia_xz>
-					<inertia_yz>0</inertia_yz>
+					<mass>0.23359000</mass>
+					<mass_center>0.03363413 -0.18155885 0.01560000</mass_center>
+					<inertia_xx>0.00043855</inertia_xx>
+					<inertia_yy>0.00008859</inertia_yy>
+					<inertia_zz>0.00040258</inertia_zz>
+					<inertia_xy>0.00003014</inertia_xy>
+					<inertia_xz>-0.00000424</inertia_xz>
+					<inertia_yz>0.00006418</inertia_yz>
 					<!--Joint that connects this body with the parent body.-->
 					<Joint>
 						<CustomJoint name="radioulnar">
@@ -1676,14 +1775,14 @@
 					</WrapObjectSet>
 				</Body>
 				<Body name="hand">
-					<mass>0.4575</mass>
-					<mass_center> 0 -0.068095 0</mass_center>
-					<inertia_xx>0.000892</inertia_xx>
-					<inertia_yy>0.000547</inertia_yy>
-					<inertia_zz>0.00134</inertia_zz>
-					<inertia_xy>0</inertia_xy>
-					<inertia_xz>0</inertia_xz>
-					<inertia_yz>0</inertia_yz>
+                    <mass>0.58190000</mass>
+					<mass_center>-0.00301314 -0.04249931 -0.00112205</mass_center>
+					<inertia_xx>0.00011000</inertia_xx>
+					<inertia_yy>0.00006000</inertia_yy>
+					<inertia_zz>0.00015000</inertia_zz>
+					<inertia_xy>0.00000090</inertia_xy>
+					<inertia_xz>-0.00000020</inertia_xz>
+					<inertia_yz>0.00001200</inertia_yz>
 					<!--Joint that connects this body with the parent body.-->
                     <Joint>
 						<WeldJoint name="radiocarpal">
@@ -2156,7 +2255,7 @@
 					</WrapObjectSet>
 				</Body>
 				<Body name="bicpt">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -2301,7 +2400,7 @@
 					</Joint>
 				</Body>
 				<Body name="bicpt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -2446,7 +2545,7 @@
 					</Joint>
 				</Body>
 				<Body name="ptpt">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -2591,7 +2690,7 @@
 					</Joint>
 				</Body>
 				<Body name="FCUpt">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -2736,7 +2835,7 @@
 					</Joint>
 				</Body>
 				<Body name="EDCpt">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -2881,7 +2980,7 @@
 					</Joint>
 				</Body>
 				<Body name="PEC1pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3026,7 +3125,7 @@
 					</Joint>
 				</Body>
 				<Body name="PEC1pt3">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3171,7 +3270,7 @@
 					</Joint>
 				</Body>
 				<Body name="PEC2pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3316,7 +3415,7 @@
 					</Joint>
 				</Body>
 				<Body name="PEC2pt3">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3461,7 +3560,7 @@
 					</Joint>
 				</Body>
 				<Body name="PEC3pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3606,7 +3705,7 @@
 					</Joint>
 				</Body>
 				<Body name="PEC3pt3">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3751,7 +3850,7 @@
 					</Joint>
 				</Body>
 				<Body name="DELT2pt2a">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -3896,7 +3995,7 @@
 					</Joint>
 				</Body>
 				<Body name="DELT2pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -4041,7 +4140,7 @@
 					</Joint>
 				</Body>
 				<Body name="LAT1pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -4186,7 +4285,7 @@
 					</Joint>
 				</Body>
 				<Body name="LAT1pt3">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -4331,7 +4430,7 @@
 					</Joint>
 				</Body>
 				<Body name="LAT2pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -4476,7 +4575,7 @@
 					</Joint>
 				</Body>
 				<Body name="LAT2pt3">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -4621,7 +4720,7 @@
 					</Joint>
 				</Body>
 				<Body name="LAT3pt2">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
@@ -4766,7 +4865,7 @@
 					</Joint>
 				</Body>
 				<Body name="LAT3pt3">
-					<mass>1e-006</mass>
+					<mass>1e-004</mass>
 					<mass_center> 0 0 0</mass_center>
 					<inertia_xx>1</inertia_xx>
 					<inertia_yy>1</inertia_yy>
