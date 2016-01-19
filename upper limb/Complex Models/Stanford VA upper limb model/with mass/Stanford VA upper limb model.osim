@@ -2,23 +2,83 @@
 <OpenSimDocument Version="30000">
 	<Model name="Stanford VA Upper Limb Model">
 		<defaults>
-			<Thelen2003Muscle name="default">
-				<!--The set of points defining the path of the muscle.-->
-				<GeometryPath>
-					<!--All properties of this object have their default values.-->
-				</GeometryPath>
-				<!--Maximum isometric force that the fibers can generate-->
-				<max_isometric_force>546</max_isometric_force>
-				<!--Optimal length of the muscle fibers-->
-				<optimal_fiber_length>0.0535</optimal_fiber_length>
-				<!--Resting length of the tendon-->
-				<tendon_slack_length>0.078</tendon_slack_length>
-				<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
-				<pennation_angle_at_optimal>0.13962634016</pennation_angle_at_optimal>
-				<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
-				<max_contraction_velocity>0</max_contraction_velocity>
-			</Thelen2003Muscle>
-		</defaults>
+			<Schutte1993Muscle name="defaultmuscle">
+			<max_isometric_force> 546.000000000000 </max_isometric_force>
+			<optimal_fiber_length> 0.053500000000 </optimal_fiber_length>
+			<tendon_slack_length> 0.078000000000 </tendon_slack_length>
+			<pennation_angle> 0.139626340160 </pennation_angle>
+			<max_contraction_velocity> 0.000000000000 </max_contraction_velocity>
+			<tendon_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -10.000000000000 -0.002000000000 -0.001000000000 0.000000000000 0.001310000000 0.002810000000 0.004310000000 0.005810000000 0.007310000000 0.008810000000 0.010300000000 0.011800000000 0.012300000000 9.200000000000 9.201000000000 9.202000000000 20.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.010800000000 0.025700000000 0.043500000000 0.065200000000 0.091500000000 0.123000000000 0.161000000000 0.208000000000 0.227000000000 345.000000000000 345.000000000000 345.000000000000 345.000000000000 </y>
+					</NaturalCubicSpline>
+			</tendon_force_length_curve>
+			<active_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.000000000000 0.401000000000 0.402000000000 0.403500000000 0.527250000000 0.628750000000 0.718750000000 0.861250000000 1.045000000000 1.217500000000 1.438750000000 1.618750000000 1.620000000000 1.621000000000 2.200000000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.226667000000 0.636667000000 0.856667000000 0.950000000000 0.993333000000 0.770000000000 0.246667000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 </y>
+					</NaturalCubicSpline>
+			</active_force_length_curve>
+			<passive_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.998000000000 0.999000000000 1.150000000000 1.250000000000 1.350000000000 1.450000000000 1.550000000000 1.650000000000 1.750000000000 1.750100000000 1.750200000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.035000000000 0.120000000000 0.260000000000 0.550000000000 1.170000000000 2.000000000000 2.000000000000 2.000000000000 2.000000000000 </y>
+					</NaturalCubicSpline>
+			</passive_force_length_curve>
+		</Schutte1993Muscle>
+		<Thelen2003Muscle name="defaultmuscle">
+			<max_isometric_force> 546.000000000000 </max_isometric_force>
+			<optimal_fiber_length> 0.053500000000 </optimal_fiber_length>
+			<tendon_slack_length> 0.078000000000 </tendon_slack_length>
+			<pennation_angle> 0.139626340160 </pennation_angle>
+			<max_contraction_velocity> 0.000000000000 </max_contraction_velocity>
+			<tendon_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -10.000000000000 -0.002000000000 -0.001000000000 0.000000000000 0.001310000000 0.002810000000 0.004310000000 0.005810000000 0.007310000000 0.008810000000 0.010300000000 0.011800000000 0.012300000000 9.200000000000 9.201000000000 9.202000000000 20.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.010800000000 0.025700000000 0.043500000000 0.065200000000 0.091500000000 0.123000000000 0.161000000000 0.208000000000 0.227000000000 345.000000000000 345.000000000000 345.000000000000 345.000000000000 </y>
+					</NaturalCubicSpline>
+			</tendon_force_length_curve>
+			<active_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.000000000000 0.401000000000 0.402000000000 0.403500000000 0.527250000000 0.628750000000 0.718750000000 0.861250000000 1.045000000000 1.217500000000 1.438750000000 1.618750000000 1.620000000000 1.621000000000 2.200000000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.226667000000 0.636667000000 0.856667000000 0.950000000000 0.993333000000 0.770000000000 0.246667000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 </y>
+					</NaturalCubicSpline>
+			</active_force_length_curve>
+			<passive_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.998000000000 0.999000000000 1.150000000000 1.250000000000 1.350000000000 1.450000000000 1.550000000000 1.650000000000 1.750000000000 1.750100000000 1.750200000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.035000000000 0.120000000000 0.260000000000 0.550000000000 1.170000000000 2.000000000000 2.000000000000 2.000000000000 2.000000000000 </y>
+					</NaturalCubicSpline>
+			</passive_force_length_curve>
+		</Thelen2003Muscle>
+		<Delp1990Muscle name="defaultmuscle">
+			<max_isometric_force> 546.000000000000 </max_isometric_force>
+			<optimal_fiber_length> 0.053500000000 </optimal_fiber_length>
+			<tendon_slack_length> 0.078000000000 </tendon_slack_length>
+			<pennation_angle> 0.139626340160 </pennation_angle>
+			<max_contraction_velocity> 0.000000000000 </max_contraction_velocity>
+			<tendon_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -10.000000000000 -0.002000000000 -0.001000000000 0.000000000000 0.001310000000 0.002810000000 0.004310000000 0.005810000000 0.007310000000 0.008810000000 0.010300000000 0.011800000000 0.012300000000 9.200000000000 9.201000000000 9.202000000000 20.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.010800000000 0.025700000000 0.043500000000 0.065200000000 0.091500000000 0.123000000000 0.161000000000 0.208000000000 0.227000000000 345.000000000000 345.000000000000 345.000000000000 345.000000000000 </y>
+					</NaturalCubicSpline>
+			</tendon_force_length_curve>
+			<active_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.000000000000 0.401000000000 0.402000000000 0.403500000000 0.527250000000 0.628750000000 0.718750000000 0.861250000000 1.045000000000 1.217500000000 1.438750000000 1.618750000000 1.620000000000 1.621000000000 2.200000000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.226667000000 0.636667000000 0.856667000000 0.950000000000 0.993333000000 0.770000000000 0.246667000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 </y>
+					</NaturalCubicSpline>
+			</active_force_length_curve>
+			<passive_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.998000000000 0.999000000000 1.150000000000 1.250000000000 1.350000000000 1.450000000000 1.550000000000 1.650000000000 1.750000000000 1.750100000000 1.750200000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.035000000000 0.120000000000 0.260000000000 0.550000000000 1.170000000000 2.000000000000 2.000000000000 2.000000000000 2.000000000000 </y>
+					</NaturalCubicSpline>
+			</passive_force_length_curve>
+		</Delp1990Muscle>
+	
+        </defaults>
 		<!--Acceleration due to gravity.-->
 		<gravity> 0 -9.80665 0</gravity>
 		<!--Bodies in the model.-->
@@ -10050,7 +10110,8 @@
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
 				</Schutte1993Muscle_Deprecated>
-				<Schutte1993Muscle_Deprecated name="ECRL">
+				
+                <Schutte1993Muscle_Deprecated name="ECRL">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -10419,7 +10480,8 @@
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.06981317008</pennation_angle_at_optimal>
 				</Schutte1993Muscle_Deprecated>
-				<Schutte1993Muscle_Deprecated name="PT">
+				
+                <Schutte1993Muscle_Deprecated name="PT">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -10537,7 +10599,8 @@
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.174532925199</pennation_angle_at_optimal>
 				</Schutte1993Muscle_Deprecated>
-				<Schutte1993Muscle_Deprecated name="FDSL">
+				
+                <Schutte1993Muscle_Deprecated name="FDSL">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->

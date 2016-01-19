@@ -77,7 +77,8 @@
 					</NaturalCubicSpline>
 			</passive_force_length_curve>
 		</Delp1990Muscle>
-	</defaults>
+	
+    </defaults>
 	<ForceSet>
 	<groups>
 		<ObjectGroup name="shoulder">

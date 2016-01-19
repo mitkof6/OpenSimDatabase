@@ -2,132 +2,83 @@
 <OpenSimDocument Version="30000">
 	<Model name="NoTremor Upper Limb Model">
 		<defaults>
-			<Thelen2003Muscle name="default">
-				<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
-				<max_contraction_velocity>10</max_contraction_velocity>
-				<!--time constant for ramping up muscle activation-->
-				<activation_time_constant>0.01</activation_time_constant>
-				<!--time constant for ramping down of muscle activation-->
-				<deactivation_time_constant>0.04</deactivation_time_constant>
-				<!--tendon strain at maximum isometric muscle force-->
-				<FmaxTendonStrain>0.033</FmaxTendonStrain>
-				<!--passive muscle strain at maximum isometric muscle force-->
-				<FmaxMuscleStrain>0.6</FmaxMuscleStrain>
-				<!--shape factor for Gaussian active muscle force-length relationship-->
-				<KshapeActive>0.5</KshapeActive>
-				<!--exponential shape factor for passive force-length relationship-->
-				<KshapePassive>4</KshapePassive>
-				<!--force-velocity shape factor-->
-				<Af>0.3</Af>
-				<!--maximum normalized lengthening force-->
-				<Flen>1.8</Flen>
-			</Thelen2003Muscle>
-			<Millard2012EquilibriumMuscle name="default">
-				<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
-				<max_contraction_velocity>10</max_contraction_velocity>
-				<!--Activation time constant (in seconds).-->
-				<activation_time_constant>0.01</activation_time_constant>
-				<!--Deactivation time constant (in seconds).-->
-				<deactivation_time_constant>0.04</deactivation_time_constant>
-			</Millard2012EquilibriumMuscle>
-            <CMC_Joint name="default">
-				<!--Flag (true or false) indicating whether or not a task is enabled.-->
-				<on> false </on>
-				<!--Weight with which a task is tracked relative to other tasks. To track
-				    a task more tightly, make the weight larger.-->
-				<weight>       1.00000000       1.00000000       1.00000000 </weight>
-				<!--Name of body frame with respect to which a tracking objective is
-				    specified. The special name 'center_of_mass' refers to the system
-				    center of mass. This property is not used for tracking joint angles.-->
-				<wrt_body> -1 </wrt_body>
-				<!--Name of body frame in which the tracking objectives are expressed.
-				    This property is not used for tracking joint angles.-->
-				<express_body> -1 </express_body>
-				<!--Array of 3 flags (each true or false) specifying whether a component
-				    of a task is active.  For example, tracking the trajectory of a point
-				    in space could have three components (x,y,z).  This allows each of
-				    those to be made active (true) or inactive (false).  A task for
-				    tracking a joint coordinate only has one component.-->
-				<active> false false false </active>
-				<!--Position error feedback gain (stiffness). To achieve critical damping
-				    of errors, choose kv = 2*sqrt(kp).-->
-				<kp>       1.00000000       1.00000000       1.00000000 </kp>
-				<!--Velocity error feedback gain (damping). To achieve critical damping of
-				    errors, choose kv = 2*sqrt(kp).-->
-				<kv>       1.00000000       1.00000000       1.00000000 </kv>
-				<!--Feedforward acceleration gain.  This is normally set to 1.0, so no
-				    gain.-->
-				<ka>       1.00000000       1.00000000       1.00000000 </ka>
-				<!--Direction vector[3] for component 0 of a task. Joint tasks do not use
-				    this propery.-->
-				<r0>       0.00000000       0.00000000       0.00000000 </r0>
-				<!--Direction vector[3] for component 1 of a task. Joint tasks do not use
-				    this property.-->
-				<r1>       0.00000000       0.00000000       0.00000000 </r1>
-				<!--Direction vector[3] for component 2 of a task. Joint tasks do not use
-				    this property.-->
-				<r2>       0.00000000       0.00000000       0.00000000 </r2>
-				<!--Name of the coordinate to be tracked.-->
-				<coordinate>  </coordinate>
-				<!--Error limit on the tracking accuracy for this coordinate. If the
-				    tracking errors approach this limit, the weighting for this coordinate
-				    is increased.-->
-				<limit>       0.00000000 </limit>
-			</CMC_Joint>
-            <ControlLinear name="default">
-				<is_model_control> true </is_model_control>
-				<extrapolate> true </extrapolate>
-				<default_min>       0.02000000 </default_min>
-				<default_max>       1.00000000 </default_max>
-				<filter_on> false </filter_on>
-				<use_steps> true </use_steps>
-				<x_nodes/>
-				<min_nodes/>
-				<max_nodes/>
-				<kp>     100.00000000 </kp>
-				<kv>      20.00000000 </kv>
-			</ControlLinear>
-			<CoordinateActuator name="default">
-				<isDisabled> false </isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving
-				    for control values-->
-				<min_control> -infinity </min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving
-				    for control values-->
-				<max_control> infinity </max_control>
-				<coordinate> Unassigned </coordinate>
-				<optimal_force>    1000.00000000 </optimal_force>
-			</CoordinateActuator>
-			<PointActuator name="default">
-				<isDisabled> false </isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving
-				    for control values-->
-				<min_control> -infinity </min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving
-				    for control values-->
-				<max_control> infinity </max_control>
-				<body>  </body>
-				<point>       0.00000000       0.00000000       0.00000000 </point>
-				<point_is_global> false </point_is_global>
-				<direction>      -1.00000000      -0.00000000      -0.00000000 </direction>
-				<force_is_global> true </force_is_global>
-				<optimal_force>    1000.00000000 </optimal_force>
-			</PointActuator>
-			<TorqueActuator name="default">
-				<isDisabled> false </isDisabled>
-				<!--Minimum allowed value for control signal. Used primarily when solving
-				    for control values-->
-				<min_control> -infinity </min_control>
-				<!--Maximum allowed value for control signal. Used primarily when solving
-				    for control values-->
-				<max_control> infinity </max_control>
-				<bodyA>  </bodyA>
-				<bodyB>  </bodyB>
-				<torque_is_global> true </torque_is_global>
-				<axis>      -1.00000000      -0.00000000      -0.00000000 </axis>
-				<optimal_force>       1.00000000 </optimal_force>
-			</TorqueActuator>
-		</defaults>
+			<Schutte1993Muscle name="defaultmuscle">
+			<max_isometric_force> 546.000000000000 </max_isometric_force>
+			<optimal_fiber_length> 0.053500000000 </optimal_fiber_length>
+			<tendon_slack_length> 0.078000000000 </tendon_slack_length>
+			<pennation_angle> 0.139626340160 </pennation_angle>
+			<max_contraction_velocity> 0.000000000000 </max_contraction_velocity>
+			<tendon_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -10.000000000000 -0.002000000000 -0.001000000000 0.000000000000 0.001310000000 0.002810000000 0.004310000000 0.005810000000 0.007310000000 0.008810000000 0.010300000000 0.011800000000 0.012300000000 9.200000000000 9.201000000000 9.202000000000 20.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.010800000000 0.025700000000 0.043500000000 0.065200000000 0.091500000000 0.123000000000 0.161000000000 0.208000000000 0.227000000000 345.000000000000 345.000000000000 345.000000000000 345.000000000000 </y>
+					</NaturalCubicSpline>
+			</tendon_force_length_curve>
+			<active_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.000000000000 0.401000000000 0.402000000000 0.403500000000 0.527250000000 0.628750000000 0.718750000000 0.861250000000 1.045000000000 1.217500000000 1.438750000000 1.618750000000 1.620000000000 1.621000000000 2.200000000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.226667000000 0.636667000000 0.856667000000 0.950000000000 0.993333000000 0.770000000000 0.246667000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 </y>
+					</NaturalCubicSpline>
+			</active_force_length_curve>
+			<passive_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.998000000000 0.999000000000 1.150000000000 1.250000000000 1.350000000000 1.450000000000 1.550000000000 1.650000000000 1.750000000000 1.750100000000 1.750200000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.035000000000 0.120000000000 0.260000000000 0.550000000000 1.170000000000 2.000000000000 2.000000000000 2.000000000000 2.000000000000 </y>
+					</NaturalCubicSpline>
+			</passive_force_length_curve>
+		</Schutte1993Muscle>
+		<Thelen2003Muscle name="defaultmuscle">
+			<max_isometric_force> 546.000000000000 </max_isometric_force>
+			<optimal_fiber_length> 0.053500000000 </optimal_fiber_length>
+			<tendon_slack_length> 0.078000000000 </tendon_slack_length>
+			<pennation_angle> 0.139626340160 </pennation_angle>
+			<max_contraction_velocity> 0.000000000000 </max_contraction_velocity>
+			<tendon_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -10.000000000000 -0.002000000000 -0.001000000000 0.000000000000 0.001310000000 0.002810000000 0.004310000000 0.005810000000 0.007310000000 0.008810000000 0.010300000000 0.011800000000 0.012300000000 9.200000000000 9.201000000000 9.202000000000 20.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.010800000000 0.025700000000 0.043500000000 0.065200000000 0.091500000000 0.123000000000 0.161000000000 0.208000000000 0.227000000000 345.000000000000 345.000000000000 345.000000000000 345.000000000000 </y>
+					</NaturalCubicSpline>
+			</tendon_force_length_curve>
+			<active_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.000000000000 0.401000000000 0.402000000000 0.403500000000 0.527250000000 0.628750000000 0.718750000000 0.861250000000 1.045000000000 1.217500000000 1.438750000000 1.618750000000 1.620000000000 1.621000000000 2.200000000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.226667000000 0.636667000000 0.856667000000 0.950000000000 0.993333000000 0.770000000000 0.246667000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 </y>
+					</NaturalCubicSpline>
+			</active_force_length_curve>
+			<passive_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.998000000000 0.999000000000 1.150000000000 1.250000000000 1.350000000000 1.450000000000 1.550000000000 1.650000000000 1.750000000000 1.750100000000 1.750200000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.035000000000 0.120000000000 0.260000000000 0.550000000000 1.170000000000 2.000000000000 2.000000000000 2.000000000000 2.000000000000 </y>
+					</NaturalCubicSpline>
+			</passive_force_length_curve>
+		</Thelen2003Muscle>
+		<Delp1990Muscle name="defaultmuscle">
+			<max_isometric_force> 546.000000000000 </max_isometric_force>
+			<optimal_fiber_length> 0.053500000000 </optimal_fiber_length>
+			<tendon_slack_length> 0.078000000000 </tendon_slack_length>
+			<pennation_angle> 0.139626340160 </pennation_angle>
+			<max_contraction_velocity> 0.000000000000 </max_contraction_velocity>
+			<tendon_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -10.000000000000 -0.002000000000 -0.001000000000 0.000000000000 0.001310000000 0.002810000000 0.004310000000 0.005810000000 0.007310000000 0.008810000000 0.010300000000 0.011800000000 0.012300000000 9.200000000000 9.201000000000 9.202000000000 20.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.010800000000 0.025700000000 0.043500000000 0.065200000000 0.091500000000 0.123000000000 0.161000000000 0.208000000000 0.227000000000 345.000000000000 345.000000000000 345.000000000000 345.000000000000 </y>
+					</NaturalCubicSpline>
+			</tendon_force_length_curve>
+			<active_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.000000000000 0.401000000000 0.402000000000 0.403500000000 0.527250000000 0.628750000000 0.718750000000 0.861250000000 1.045000000000 1.217500000000 1.438750000000 1.618750000000 1.620000000000 1.621000000000 2.200000000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.226667000000 0.636667000000 0.856667000000 0.950000000000 0.993333000000 0.770000000000 0.246667000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.000000000000 </y>
+					</NaturalCubicSpline>
+			</active_force_length_curve>
+			<passive_force_length_curve>
+					<NaturalCubicSpline>
+						<x> -35.000000000000 0.998000000000 0.999000000000 1.150000000000 1.250000000000 1.350000000000 1.450000000000 1.550000000000 1.650000000000 1.750000000000 1.750100000000 1.750200000000 35.000000000000 </x>
+						<y> 0.000000000000 0.000000000000 0.000000000000 0.000000000000 0.035000000000 0.120000000000 0.260000000000 0.550000000000 1.170000000000 2.000000000000 2.000000000000 2.000000000000 2.000000000000 </y>
+					</NaturalCubicSpline>
+			</passive_force_length_curve>
+		</Delp1990Muscle>
+	
+        </defaults>
         <length_units> meters </length_units>
 		<force_units> N </force_units>
 		<!--Acceleration due to gravity.-->
@@ -6039,7 +5990,7 @@
 		<!--Forces in the model.-->
 		<ForceSet>
 			<objects>
-				<Millard2012EquilibriumMuscle name="DELT1">
+                <Schutte1993Muscle_Deprecated name="DELT1">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6101,38 +6052,8 @@
 					<tendon_slack_length>0.093</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.383972435439</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="DELT2">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="DELT2">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6196,38 +6117,8 @@
 					<tendon_slack_length>0.1095</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.261799387799</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="DELT3">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="DELT3">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6287,40 +6178,8 @@
 					<tendon_slack_length>0.038</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.314159265359</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="SUPSP">
-					<!--Flag indicating whether the force is disabled or not. Disabled means that the force is not active in subsequent dynamics realizations.-->
-					<isDisabled>false</isDisabled>
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="SUPSP">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6374,38 +6233,8 @@
 					<tendon_slack_length>0.0395</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.12217304764</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="INFSP">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="INFSP">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6458,38 +6287,8 @@
 					<tendon_slack_length>0.0308</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.322885911619</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="SUBSC">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="SUBSC">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6543,38 +6342,8 @@
 					<tendon_slack_length>0.033</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.349065850399</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="TMIN">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="TMIN">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6638,38 +6407,8 @@
 					<tendon_slack_length>0.0713</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.418879020479</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="TMAJ">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="TMAJ">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6729,38 +6468,8 @@
 					<tendon_slack_length>0.02</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.279252680319</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="PECM1">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="PECM1">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6826,38 +6535,8 @@
 					<tendon_slack_length>0.0028</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.296705972839</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="PECM2">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="PECM2">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -6929,38 +6608,8 @@
 					<tendon_slack_length>0.089</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.436332312999</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="PECM3">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="PECM3">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7029,38 +6678,8 @@
 					<tendon_slack_length>0.132</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.436332312999</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="LAT1">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="LAT1">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7128,38 +6747,8 @@
 					<tendon_slack_length>0.12</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.436332312999</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="LAT2">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="LAT2">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7227,38 +6816,8 @@
 					<tendon_slack_length>0.1765</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.331612557879</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="LAT3">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="LAT3">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7326,38 +6885,8 @@
 					<tendon_slack_length>0.1403</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.366519142919</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="CORB">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="CORB">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7413,38 +6942,8 @@
 					<tendon_slack_length>0.097</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="TRIlong">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="TRIlong">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7512,38 +7011,8 @@
 					<tendon_slack_length>0.143</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.209439510239</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="TRIlat">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="TRIlat">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7604,38 +7073,8 @@
 					<tendon_slack_length>0.098</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.157079632679</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="TRImed">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="TRImed">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7696,38 +7135,8 @@
 					<tendon_slack_length>0.0908</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.157079632679</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="ANC">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="ANC">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7777,38 +7186,8 @@
 					<tendon_slack_length>0.018</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="SUP">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="SUP">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7861,38 +7240,8 @@
 					<tendon_slack_length>0.028</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="BIClong">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="BIClong">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -7985,38 +7334,8 @@
 					<tendon_slack_length>0.2723</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="BICshort">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="BICshort">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -8092,38 +7411,8 @@
 					<tendon_slack_length>0.1923</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="BRA">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="BRA">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -8176,38 +7465,8 @@
 					<tendon_slack_length>0.0535</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="BRD">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="BRD">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -8261,38 +7520,9 @@
 					<tendon_slack_length>0.133</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="PT">
+				</Schutte1993Muscle_Deprecated>
+				
+                <Schutte1993Muscle_Deprecated name="PT">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -8356,38 +7586,8 @@
 					<tendon_slack_length>0.098</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.174532925199</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-				<Millard2012EquilibriumMuscle name="PQ">
+				</Schutte1993Muscle_Deprecated>
+				<Schutte1993Muscle_Deprecated name="PQ">
 					<!--The set of points defining the path of the muscle.-->
 					<GeometryPath>
 						<!--The set of points defining the path-->
@@ -8439,39 +7639,11 @@
 					<tendon_slack_length>0.005</tendon_slack_length>
 					<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
 					<pennation_angle_at_optimal>0.174532925199</pennation_angle_at_optimal>
-					<!--Activation lower bound.-->
-					<minimum_activation>0.01</minimum_activation>
-					<!--Active-force-length curve.-->
-					<ActiveForceLengthCurve>
-						<!--Minimum value of the active-force-length curve-->
-						<minimum_value>0</minimum_value>
-					</ActiveForceLengthCurve>
-					<!--Force-velocity curve.-->
-					<ForceVelocityCurve>
-						<!--Curve slope at the maximum normalized concentric (shortening) velocity (normalized velocity of -1)-->
-						<concentric_slope_at_vmax>0</concentric_slope_at_vmax>
-						<!--Curve slope just before reaching concentric_slope_at_vmax-->
-						<concentric_slope_near_vmax>0.25</concentric_slope_near_vmax>
-						<!--Curve slope at isometric (normalized velocity of 0)-->
-						<isometric_slope>5</isometric_slope>
-						<!--Curve slope at the maximum normalized eccentric (lengthening) velocity (normalized velocity of 1)-->
-						<eccentric_slope_at_vmax>0</eccentric_slope_at_vmax>
-						<!--Curve slope just before reaching eccentric_slope_at_vmax-->
-						<eccentric_slope_near_vmax>0.15</eccentric_slope_near_vmax>
-						<!--Curve value at the maximum normalized eccentric contraction velocity-->
-						<max_eccentric_velocity_force_multiplier>1.4</max_eccentric_velocity_force_multiplier>
-					</ForceVelocityCurve>
-					<!--Passive-force-length curve.-->
-					<FiberForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</FiberForceLengthCurve>
-					<!--Tendon-force-length curve.-->
-					<TendonForceLengthCurve>
-						<!--All properties of this object have their default values.-->
-					</TendonForceLengthCurve>
-				</Millard2012EquilibriumMuscle>
-			</objects>
-			<groups>
+				</Schutte1993Muscle_Deprecated>
+				
+            </objects>
+            
+            <groups>
 				<ObjectGroup name="shoulder">
 					<members> CORB DELT1 DELT2 DELT3 INFSP LAT1 LAT2 LAT3 PECM1 PECM2 PECM3 SUBSC SUPSP TMAJ TMIN</members>
 				</ObjectGroup>
