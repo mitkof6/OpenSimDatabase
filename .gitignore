@@ -1,0 +1,12 @@
+# latex
+*.log
+*.aux
+*.bbl
+*.blg
+*.lof
+*.lot
+*.gz
+*.toc
+*.nav
+*.out
+*.snm
