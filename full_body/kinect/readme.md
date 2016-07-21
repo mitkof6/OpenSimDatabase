@@ -1,3 +1,5 @@
-Author: Dimitar Stanev (jimstanev@gmail.com)
+# Description
 
-Full body model, with kinect based marker set.
+Full body model, with kinect based marker set. 
+
+Author: Dimitar Stanev (jimstanev@gmail.com)
