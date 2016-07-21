@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="30000">
+	<MarkerSet>
+		<objects>
+			<Marker name="NUI_SKELETON_POSITION_HIP_CENTER">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>pelvis</body>
+				<!--Location of a marker on the body segment.-->
+				<location> -0.08 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>true</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_HIP_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>femur_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_HIP_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>femur_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>true</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_KNEE_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>tibia_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_KNEE_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>tibia_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_ANKLE_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>calcn_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_ANKLE_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>calcn_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_FOOT_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>toes_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_FOOT_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>toes_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_SHOULDER_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>humerus_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_SHOULDER_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>humerus_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_ELBOW_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>ulna_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_ELBOW_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>ulna_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_WRIST_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>hand_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_WRIST_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>hand_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_SHOULDER_CENTER">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>torso</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0.35 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_SPINE">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>torso</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_HEAD">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>torso</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 0.5 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_HAND_LEFT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>hand_l</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 -0.05 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+			<Marker name="NUI_SKELETON_POSITION_HAND_RIGHT">
+				<!--Body segment in the model on which the marker resides.-->
+				<body>hand_r</body>
+				<!--Location of a marker on the body segment.-->
+				<location> 0 -0.05 0</location>
+				<!--Flag (true or false) specifying whether or not a marker should be kept fixed in the marker placement step.  i.e. If false, the marker is allowed to move.-->
+				<fixed>false</fixed>
+			</Marker>
+		</objects>
+		<groups />
+	</MarkerSet>
+</OpenSimDocument>
