@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSimDocument Version="20302">
+	<ForceSet name="model_with_muscles">
+		<defaults/>
+		<objects>
+			<CoordinateActuator name="blockToGround_xRotation_reserve">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> blockToGround_xRotation </coordinate>
+				<optimal_force>    1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="blockToGround_yRotation_reserve">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> blockToGround_yRotation </coordinate>
+				<optimal_force>    1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="blockToGround_zRotation_reserve">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> blockToGround_zRotation </coordinate>
+				<optimal_force>    1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="blockToGround_xTranslation_reserve">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> blockToGround_xTranslation </coordinate>
+				<optimal_force>    1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="blockToGround_yTranslation_reserve">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> blockToGround_yTranslation </coordinate>
+				<optimal_force>    1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="blockToGround_zTranslation_reserve">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+				<coordinate> blockToGround_zTranslation </coordinate>
+				<optimal_force>    1.00000000 </optimal_force>
+			</CoordinateActuator>
+		</objects>
+		<groups/>
+	</ForceSet>
+</OpenSimDocument>
+
